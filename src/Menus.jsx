@@ -37,17 +37,13 @@ function DateMenu() {
             <div>
                 <div>
                     <h1>When to when?</h1>
-                    <p>Max duration is 3 months</p>
+                    <p>Error messages will display here</p>
                 </div>
                 <div><button>Continue</button></div>
             </div>
             <div>
                 <div>
-                    <h2>From</h2>
-                    <input type="date" />
-                </div>
-                <div>
-                    <h2>To</h2>
+                    <h2>Month</h2>
                     <input type="date" />
                 </div>
             </div>
