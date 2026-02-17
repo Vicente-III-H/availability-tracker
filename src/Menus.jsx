@@ -36,7 +36,7 @@ function DateMenu() {
         <div>
             <div>
                 <div>
-                    <h1>When to when?</h1>
+                    <h1>When is when?</h1>
                     <p>Error messages will display here</p>
                 </div>
                 <div><button>Continue</button></div>
