@@ -1,4 +1,13 @@
-function StartMenu() {
+import { useState } from "react"
+
+const Menus = Object.freeze({
+    Start: "Start",
+    Count: "Count",
+    Date: "Date",
+    Calendar: "Calendar"
+});
+
+function StartMenu({ setCurrentMenu }) {
     return (
         <div>
             <div>
@@ -6,18 +15,18 @@ function StartMenu() {
                 <p>A scheduler for viewing your friends' busy busy lives</p>
             </div>
             <div>
-                <button>Continue</button>
+                <button onClick={() => {setCurrentMenu(Menus.Count)}}>Continue</button>
             </div>
         </div>
     )
 }
 
-function CountMenu() {
+function CountMenu({ setCurrentMenu }) {
     return (
         <div>
             <div>
                 <div><h1>How many people?</h1></div>
-                <div><button>Continue</button></div>
+                <div><button onClick={() => {setCurrentMenu(Menus.Date)}}>Continue</button></div>
             </div>
             <div>
                 <div>{":)"}</div>
@@ -31,7 +40,7 @@ function CountMenu() {
     )
 }
 
-function DateMenu() {
+function DateMenu({ setCurrentMenu }) {
     return (
         <div>
             <div>
@@ -39,12 +48,12 @@ function DateMenu() {
                     <h1>When is when?</h1>
                     <p>Error messages will display here</p>
                 </div>
-                <div><button>Continue</button></div>
+                <div><button onClick={() => {setCurrentMenu(Menus.Calendar)}}>Continue</button></div>
             </div>
             <div>
                 <div>
                     <h2>Month</h2>
-                    <input type="date" />
+                    
                 </div>
             </div>
         </div>
@@ -52,9 +61,20 @@ function DateMenu() {
 }
 
 function MenuSelector() {
-    return (
-        <DateMenu></DateMenu>
-    )
+    const [currentMenu, setCurrentMenu] = useState(Menus.Start);
+
+    switch (currentMenu) {
+        case Menus.Start:
+            return <StartMenu setCurrentMenu={setCurrentMenu} />
+        case Menus.Count:
+            return <CountMenu setCurrentMenu={setCurrentMenu} />
+        case Menus.Date:
+            return <DateMenu setCurrentMenu={setCurrentMenu} />
+        case Menus.Calendar:
+            return <></>
+        default:
+            return <StartMenu setCurrentMenu={setCurrentMenu} />
+    }
 }
 
 export default MenuSelector;
