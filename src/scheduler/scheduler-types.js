@@ -85,5 +85,6 @@ function createSchedulerInfo(count, month, year) {
 }
 
 export {
+    weekdayAbbreviation,
     createSchedulerInfo
 }

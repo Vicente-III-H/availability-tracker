@@ -1,3 +1,4 @@
+import { weekdayAbbreviation } from './scheduler-types'
 import './scheduler.css'
 
 function FaceCard({ name }) {
@@ -20,6 +21,7 @@ function Calendar({ duration }) {
     return (
         <div id="calendar">
             <div>{duration.getMonthName()}</div>
+            <div id="weekdays">{weekdayAbbreviation.map((weekday) => { return <div key={weekday}>{weekday}</div> })}</div>
             <div></div>
         </div>
     )

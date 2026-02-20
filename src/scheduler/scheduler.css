@@ -20,3 +20,11 @@
     /* change the above values */
     flex: 1;
 }
+
+#weekdays {
+    display: flex;
+}
+
+#weekdays > div {
+    flex: 1;
+}
