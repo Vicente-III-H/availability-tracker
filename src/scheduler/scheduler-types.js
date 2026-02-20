@@ -1,3 +1,22 @@
+const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+
+function getMonthName(monthIndex) {
+    return monthNames[monthIndex];
+}
+
 function createAvailability() {
     const availability = {}
 
