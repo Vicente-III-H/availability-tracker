@@ -1,3 +1,5 @@
+import './scheduler.css'
+
 function FaceCard({ name }) {
     return (
         <div>
@@ -8,7 +10,7 @@ function FaceCard({ name }) {
 
 function FacePanel({ peopleList }) {
     return (
-        <div>
+        <div id="face-panel">
             {peopleList.map((person) => <FaceCard name={person.name} key={person.getKey()} /> )}
         </div>
     )
@@ -16,7 +18,7 @@ function FacePanel({ peopleList }) {
 
 function Calendar() {
     return (
-        <div>
+        <div id="calendar">
             
         </div>
     )
@@ -24,7 +26,7 @@ function Calendar() {
 
 function Scheduler({ SchedulerInfo }) {
     return (
-        <div>
+        <div id="scheduler">
             <FacePanel peopleList={SchedulerInfo.people} />
             <Calendar />
         </div>
