@@ -4,7 +4,7 @@ import Scheduler from './scheduler/Scheduler'
 import { createSchedulerInfo } from './scheduler/scheduler-types'
 
 function App() {
-    const testInfo = createSchedulerInfo(5, 1, 2026);
+    const testInfo = createSchedulerInfo(5, 0, 2026);
 
     return (
         <Scheduler SchedulerInfo={testInfo} />

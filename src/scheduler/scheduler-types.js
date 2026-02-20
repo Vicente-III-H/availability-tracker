@@ -64,10 +64,13 @@ function createSchedulerInfo(count, month, year) {
         return peopleList;
     })();
 
+    const duration = {};
+    duration.getMonthName = () => getMonthName(month);
+    duration.getYear = () => year;
+
     return {
         people,
-        month,
-        year
+        duration
     };
 }
 

@@ -16,10 +16,11 @@ function FacePanel({ peopleList }) {
     )
 }
 
-function Calendar() {
+function Calendar({ duration }) {
     return (
         <div id="calendar">
-            
+            <div>{duration.getMonthName()}</div>
+            <div></div>
         </div>
     )
 }
@@ -28,7 +29,7 @@ function Scheduler({ SchedulerInfo }) {
     return (
         <div id="scheduler">
             <FacePanel peopleList={SchedulerInfo.people} />
-            <Calendar />
+            <Calendar duration={SchedulerInfo.duration} />
         </div>
     )
 }
