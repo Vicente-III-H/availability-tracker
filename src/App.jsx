@@ -1,10 +1,13 @@
 import MenuSelector from './Menus'
 import './App.css'
 import Scheduler from './scheduler/Scheduler'
+import { createSchedulerInfo } from './scheduler/scheduler-types'
 
 function App() {
+    const testInfo = createSchedulerInfo(1, 1, 2026);
+
     return (
-        <Scheduler />
+        <Scheduler SchedulerInfo={testInfo} />
     )
 }
 

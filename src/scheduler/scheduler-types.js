@@ -13,27 +13,37 @@ function createAvailability() {
         }
         return null;
     };
+
+    return {
+        blockDate,
+        freeDate,
+        getBlockedDate
+    }
 }
 
 function createPerson(name) {
     const availability = createAvailability();
 
+    const key = crypto.randomUUID();
+    const getKey = () => key;
+
     return {
         name,
-        ...availability
+        ...availability,
+        getKey
     };
 }
 
 function createSchedulerInfo(count, month, year) {
-    const people = () => {
+    const people = (() => {
         const peopleList = [];
 
         for (let i = 0; i < count; i++) {
-            peopleList.push(createPerson("Person " + i));
+            peopleList.push(createPerson("Person " + (i + 1)));
         }
 
         return peopleList;
-    }
+    })();
 
     return {
         people,

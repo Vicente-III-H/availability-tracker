@@ -1,15 +1,15 @@
-function FaceCards() {
+function FaceCard({ name }) {
     return (
         <div>
-
+            {name}
         </div>
     )
 }
 
-function FacePanel() {
+function FacePanel({ peopleList }) {
     return (
         <div>
-            <FaceCards />
+            {peopleList.map((person) => <FaceCard name={person.name} key={person.getKey()} /> )}
         </div>
     )
 }
@@ -22,10 +22,10 @@ function Calendar() {
     )
 }
 
-function Scheduler() {
+function Scheduler({ SchedulerInfo }) {
     return (
         <div>
-            <FacePanel />
+            <FacePanel peopleList={SchedulerInfo.people} />
             <Calendar />
         </div>
     )
