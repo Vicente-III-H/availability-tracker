@@ -1,3 +1,13 @@
+const weekdayAbbreviation = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+];
+
 const monthNames = [
     "January",
     "February",
