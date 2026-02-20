@@ -21,9 +21,27 @@ function createPerson(name) {
     return {
         name,
         ...availability
+    };
+}
+
+function createSchedulerInfo(count, month, year) {
+    const people = () => {
+        const peopleList = [];
+
+        for (let i = 0; i < count; i++) {
+            peopleList.push(createPerson("Person " + i));
+        }
+
+        return peopleList;
     }
+
+    return {
+        people,
+        month,
+        year
+    };
 }
 
 export {
-    createPerson
+    createSchedulerInfo
 }
