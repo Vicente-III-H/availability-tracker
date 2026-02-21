@@ -1,4 +1,5 @@
 import { weekdayAbbreviation } from "../../global";
+import './calendar.css'
 
 function Day({ date, disabled = false }) {
     if (disabled) {

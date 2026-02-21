@@ -1,5 +1,6 @@
 import ModesControl from "./modes-control";
 import { VIEW_DEFAULT } from "../scheduler-types";
+import './face-panel.css'
 
 function FaceCard({ Person, view }) {
     const toggleViewPerson = () => {
