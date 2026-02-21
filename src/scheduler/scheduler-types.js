@@ -39,6 +39,11 @@ const Availability = Object.freeze((() => {
         return pack(newAvailability);
     }
 
+    function duplicate(availability) {
+        const newAvailability = {...availability.getFullAvailability()};
+        return pack(newAvailability);
+    }
+
     function blockOn(availability, date, severity) {
         const newAvailability = {...availability.getFullAvailability()};
         newAvailability[date] = severity;
@@ -53,23 +58,78 @@ const Availability = Object.freeze((() => {
 
     return {
         create,
+        duplicate,
         blockOn,
         freeOn
     }
 })());
 
-function createPerson(name) {
-    const availability = Availability.create();
+const Person = Object.freeze((() => {
+    function pack(personTemplate) {
+        return {
+            name: () => personTemplate.name,
 
-    const id = crypto.randomUUID();
-    const getId = () => id;
+            id: () => personTemplate.id,
+
+            ...personTemplate.availability
+        }
+    }
+
+    function create(name) {
+        const availability = Availability.create();
+
+        const newPersonTemplate = {
+            name: name,
+            id: crypto.randomUUID(),
+            availability: availability
+        };
+
+        return pack(newPersonTemplate);
+    }
+
+    function changeName(person, newName) {
+        const newAvailability = Availability.duplicate(person);
+
+        const newPersonTemplate = {
+            name: newName,
+            id: person.id(),
+            availability: newAvailability
+        };
+
+        return pack(newPersonTemplate);
+    }
+
+    function blockOn(person, date, severity) {
+        const newAvailability = Availability.blockOn(person, date, severity);
+
+        const newPersonTemplate = {
+            name: person.name(),
+            id: person.id(),
+            availability: newAvailability
+        };
+
+        return pack(newPersonTemplate);
+    }
+
+    function freeOn(person, date) {
+        const newAvailability = Availability.freeOn(person, date);
+
+        const newPersonTemplate = {
+            name: person.name(),
+            id: person.id(),
+            availability: newAvailability
+        };
+
+        return pack(newPersonTemplate);
+    }
 
     return {
-        name: () => name,
-        id: getId,
-        ...availability,
-    };
-}
+        create,
+        changeName,
+        blockOn,
+        freeOn
+    }
+})());
 
 function createPeopleList(count) {
     const idTracker = {};
@@ -77,7 +137,7 @@ function createPeopleList(count) {
     const peopleList = ((idTracker) => {
         const list = [];
         for (let i = 0; i < count; i++) {
-            const person = createPerson("Person " + (i + 1));
+            const person = Person.create("Person " + (i + 1));
             list.push(person);
             idTracker[person.id()] = i;
         }
@@ -110,7 +170,6 @@ function createCalendarInfo(month, year) {
 export {
     VIEW_DEFAULT,
     severities,
-    Availability,
     createPeopleList,
     createCalendarInfo
 }
