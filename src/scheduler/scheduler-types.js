@@ -62,8 +62,9 @@ function createPeopleList(count) {
 
 function createCalendarInfo(month, year) {
     const calendarInfo = {}
-    calendarInfo.getMonthName = () => getMonthName(month);
-    calendarInfo.getYear = () => year;
+    calendarInfo.month = () => month;
+    calendarInfo.monthName = () => getMonthName(month);
+    calendarInfo.year = () => year;
 
     return calendarInfo;
 }
