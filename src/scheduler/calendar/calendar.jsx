@@ -7,7 +7,7 @@ function Day({ date, disabled = false }) {
     }
 
     return (
-        <div className="day">{date}</div>
+        <div className="day free">{date}</div>
     )
 }
 

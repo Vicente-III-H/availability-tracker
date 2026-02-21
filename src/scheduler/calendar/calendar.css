@@ -4,6 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+
+    --day-disabled: rgba(53, 53, 53, 0.3);
+    --day-free: rgba(53, 156, 229, 0.9);
 }
 
 #weekdays {
@@ -25,4 +28,12 @@
 
 .day {
     box-sizing: border-box;
+}
+
+.day.disabled {
+    background-color: var(--day-disabled);
+}
+
+.day.free {
+    background-color: var(--day-free);
 }

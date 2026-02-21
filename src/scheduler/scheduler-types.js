@@ -2,11 +2,18 @@ import { monthNames } from "../global";
 
 const VIEW_DEFAULT = "All";
 
+function createSeverity(name, rgba) {
+    return {
+        name,
+        rgba
+    }
+}
+
 /* From lowest severity to highest */
 const severities = [
-    "Unsure",
-    "Partially Busy",
-    "Unavailable"
+    createSeverity("Unsure", "rgba(246, 225, 42, 0.9)"),
+    createSeverity("Partially Busy", "rgba(226, 46, 46, 0.9)"),
+    createSeverity("Unavailable", "rgba(29, 29, 29, 0.9)")
 ]
 
 function getMonthName(monthIndex) {
