@@ -23,7 +23,12 @@
 
 /* FACE PANEL */
 .face-card {
-    
+    display: flex;
+    align-items: stretch;
+}
+
+.face-name {
+    flex: 1;
 }
 
 /* CALENDAR */

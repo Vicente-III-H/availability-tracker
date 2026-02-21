@@ -12,7 +12,7 @@ function FaceCard({ Person, view }) {
     return (
         <div className="face-card" onClick={toggleViewPerson}>
             <div></div>
-            <div>{Person.name()}</div>
+            <div className="face-name">{Person.name()}</div>
         </div>
     )
 }
@@ -21,7 +21,6 @@ function FacePanel({ People, view }) {
     return (
         <div id="face-panel">
             {People.getList().map((Person) => <FaceCard Person={Person} view={view} key={Person.id()} /> )}
-            {view.current}
         </div>
     )
 }
