@@ -1,3 +1,4 @@
+import ModesControl from "./modes-control";
 import { VIEW_DEFAULT } from "../scheduler-types";
 
 function FaceCard({ Person, view }) {
@@ -17,10 +18,15 @@ function FaceCard({ Person, view }) {
     )
 }
 
-function FacePanel({ People, view }) {
+function FacePanel({ People, mode, view }) {
     return (
         <div id="face-panel">
-            {People.getList().map((Person) => <FaceCard Person={Person} view={view} key={Person.id()} /> )}
+            <div id="face-cards">
+                {People.getList().map((Person) => <FaceCard Person={Person} view={view} key={Person.id()} /> )}
+            </div>
+            <div>
+                <ModesControl mode={mode} view={view} />
+            </div>
         </div>
     )
 }

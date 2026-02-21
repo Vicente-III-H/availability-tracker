@@ -9,10 +9,14 @@ function Scheduler({ People, CalendarInfo }) {
     const [view, setView] = useState(VIEW_DEFAULT);
     const viewStateObj = createStateObject(view, setView);
 
+    const [mode, setMode] = useState("View");
+    const modeStateObj = createStateObject(mode, setMode);
+
     return (
         <div id="scheduler">
             <FacePanel
                 People={People}
+                mode={modeStateObj}
                 view={viewStateObj}
             />
             <Calendar

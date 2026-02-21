@@ -80,6 +80,7 @@ function createCalendarInfo(month, year) {
 
 export {
     VIEW_DEFAULT,
+    severities,
     createPeopleList,
     createCalendarInfo
 }
