@@ -1,27 +1,4 @@
-const weekdayAbbreviation = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat"
-];
-
-const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-];
+import { monthNames } from "../global";
 
 function getMonthName(monthIndex) {
     return monthNames[monthIndex];
@@ -63,28 +40,35 @@ function createPerson(name) {
     };
 }
 
-function createSchedulerInfo(count, month, year) {
-    const people = (() => {
-        const peopleList = [];
+function createPeopleList(count) {
+    const keyTracker = {};
 
+    const peopleList = ((tracker) => {
+        const list = [];
         for (let i = 0; i < count; i++) {
-            peopleList.push(createPerson("Person " + (i + 1)));
+            const person = createPerson("Person " + (i + 1));
+            list.push(person);
+            tracker[person.getKey()] = i;
         }
+        return list;
+    })(keyTracker);
 
-        return peopleList;
-    })();
-
-    const duration = {};
-    duration.getMonthName = () => getMonthName(month);
-    duration.getYear = () => year;
+    const getList = () => peopleList;
 
     return {
-        people,
-        duration
-    };
+        getList
+    }
+}
+
+function createCalendarInfo(month, year) {
+    const calendarInfo = {}
+    calendarInfo.getMonthName = () => getMonthName(month);
+    calendarInfo.getYear = () => year;
+
+    return calendarInfo;
 }
 
 export {
-    weekdayAbbreviation,
-    createSchedulerInfo
+    createPeopleList,
+    createCalendarInfo
 }

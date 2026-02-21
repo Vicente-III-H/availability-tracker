@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import MenuSelector from './Menus'
 import './App.css'
 import Scheduler from './scheduler/Scheduler'
-import { createSchedulerInfo } from './scheduler/scheduler-types'
+import { createCalendarInfo, createPeopleList } from "./scheduler/scheduler-types";
 
 function App() {
-    const testInfo = createSchedulerInfo(5, 0, 2026);
+    const [CalendarInfo, setCalendarInfo] = useState(createCalendarInfo(0, 2026));
+    const [People, setPeople] = useState(createPeopleList(5));
 
     return (
-        <Scheduler SchedulerInfo={testInfo} />
+        <Scheduler People={People} CalendarInfo={CalendarInfo}/>
     )
 }
 

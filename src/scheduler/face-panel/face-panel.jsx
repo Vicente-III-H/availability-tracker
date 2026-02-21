@@ -6,10 +6,10 @@ function FaceCard({ name }) {
     )
 }
 
-function FacePanel({ peopleList }) {
+function FacePanel({ People }) {
     return (
         <div id="face-panel">
-            {peopleList.map((person) => <FaceCard name={person.name} key={person.getKey()} /> )}
+            {People.getList().map((person) => <FaceCard name={person.name} key={person.getKey()} /> )}
         </div>
     )
 }

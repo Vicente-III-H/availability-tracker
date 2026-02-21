@@ -1,11 +1,19 @@
-import { weekdayAbbreviation } from "../scheduler-types"; 
+import { weekdayAbbreviation } from "../../global";
 
-function Calendar({ duration }) {
+function Day() {
+    return (
+        <div></div>
+    )
+}
+
+function Calendar({ People, CalendarInfo, viewAvailability }) {
     return (
         <div id="calendar">
-            <div>{duration.getMonthName()}</div>
+            <div>{CalendarInfo.getMonthName()}</div>
             <div id="weekdays">{weekdayAbbreviation.map((weekday) => { return <div key={weekday}>{weekday}</div> })}</div>
-            <div></div>
+            <div id="days">
+
+            </div>
         </div>
     )
 }
