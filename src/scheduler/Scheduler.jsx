@@ -3,7 +3,6 @@ import { createStateObject } from '../global';
 import { VIEW_DEFAULT } from './scheduler-types';
 import FacePanel from './face-panel/face-panel'
 import Calendar from './calendar/calendar';
-import './scheduler.css'
 
 function Scheduler({ People, CalendarInfo }) {
     const [view, setView] = useState(VIEW_DEFAULT);
