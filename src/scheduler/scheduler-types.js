@@ -192,26 +192,6 @@ const PeopleList = Object.freeze((() => {
     }
 })());
 
-function createPeopleList(count) {
-    const idTracker = {};
-
-    const peopleList = ((idTracker) => {
-        const list = [];
-        for (let i = 0; i < count; i++) {
-            const person = Person.create("Person " + (i + 1));
-            list.push(person);
-            idTracker[person.id()] = i;
-        }
-        return list;
-    })(idTracker);
-
-    const getList = () => peopleList;
-
-    return {
-        getList
-    }
-}
-
 function createCalendarInfo(month, year) {
     const calendarInfo = {}
     calendarInfo.month = () => month;
