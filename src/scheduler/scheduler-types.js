@@ -1,5 +1,12 @@
 import { monthNames } from "../global";
 
+/* From lowest severity to highest */
+const severities = [
+    "Unsure",
+    "Partially Busy",
+    "Unavailable"
+]
+
 function getMonthName(monthIndex) {
     return monthNames[monthIndex];
 }
