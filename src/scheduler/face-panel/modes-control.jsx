@@ -22,7 +22,7 @@ function Dropdown({ setMode }) {
         <div className="dropdown-menu">
             <DropdownOption name={"View"} setMode={setMode} />
             <DropdownDivider />
-            {Severity.list().toReversed().map((severity) => <DropdownOption name={severity.name} setMode={setMode} key={severity.name}/>)}
+            {Severity.list().toReversed().map((severity) => <DropdownOption name={severity.name} setMode={setMode} key={severity.id}/>)}
             <DropdownDivider />
             <DropdownOption name={"Free"} setMode={setMode} />
         </div>

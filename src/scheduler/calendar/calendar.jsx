@@ -1,14 +1,18 @@
 import { weekdayAbbreviation } from "../../global";
+import { VIEW_DEFAULT, Severity } from "../scheduler-types";
 import './calendar.css'
 
-function Day({ date, disabled = false }) {
+function Day({ date, severity, disabled = false }) {
     if (disabled) {
         return <div className="day disabled"></div>
+    } else if (severity) {
+        const severityStyling = {
+            backgroundColor: Severity.getColorOf(severity)
+        }
+        return <div className="day" style={severityStyling}></div>
+    } else {
+        return <div className="day free">{date}</div>
     }
-
-    return (
-        <div className="day free">{date}</div>
-    )
 }
 
 function Calendar({ people, CalendarInfo, view }) {
@@ -49,7 +53,24 @@ function Calendar({ people, CalendarInfo, view }) {
                     if (dayObj.day === "disabled") {
                         return <Day disabled={true} key={dayObj.id}></Day>
                     }
-                    return <Day date={dayObj.day} key={dayObj.id}></Day>
+                    
+                    if (view.current === VIEW_DEFAULT) {
+                        return (
+                            <Day
+                                date={dayObj.day}
+                                severity={people.getHighestSeverityOn(dayObj.day)}
+                                key={dayObj.id}
+                            />
+                        )
+                    } else {
+                        return (
+                            <Day
+                                date={dayObj.day}
+                                severity={people.getPersonAvailabilityOn(view.current, dayObj.day)}
+                                key={dayObj.id}
+                            />
+                        )
+                    }
                 })}
             </div>
         </div>

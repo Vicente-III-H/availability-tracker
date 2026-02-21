@@ -21,7 +21,14 @@ const Severity = (() => {
 
         list: () => severityList,
 
-        getIndexOf: (severityName) => severityTracker[severityName]
+        getIndexOf: (severityName) => severityTracker[severityName],
+
+        getNameOf: (severityIndex) => severityList[severityIndex],
+
+        getColorOf: (severityName) => {
+            const severityIndex = severityTracker[severityName];
+            return severityList[severityIndex].color;
+        }
     }
 })();
 Severity.add("Unsure", "rgba(246, 225, 42, 0.9)");
@@ -156,7 +163,7 @@ const PeopleList = Object.freeze((() => {
                         highestSeverity = Severity.getIndexOf(availability) > highestSeverity ? Severity.getIndexOf(availability) : highestSeverity;
                     }
                 }
-                return highestSeverity === -1 ? null : highestSeverity;
+                return highestSeverity === -1 ? null : Severity.getNameOf(highestSeverity);
             },
 
             getPersonAvailabilityOn: (personId, date) => {
