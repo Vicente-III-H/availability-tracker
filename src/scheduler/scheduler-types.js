@@ -20,39 +20,54 @@ function getMonthName(monthIndex) {
     return monthNames[monthIndex];
 }
 
-function createAvailability() {
-    const availability = {}
+const Availability = Object.freeze((() => {
+    function pack(availabilityObj) {
+        return {
+            getFullAvailability: () => availabilityObj,
 
-    const blockDate = (date, severity) => {
-        availability[date] = severity;
-    };
-    const freeDate = (date) => {
-        delete availability[date];
-    };
-    const getBlockedDate = (date) => {
-        if (Object.hasOwn(availability, date)) {
-            return availability[date];
+            getAvailabilityOn: (date) => {
+                if (!Object.hasOwn(availabilityObj, date)) {
+                    return null
+                }
+                return availabilityObj[date]
+            }
         }
-        return null;
-    };
+    }
+
+    function create() {
+        const newAvailability = {};
+        return pack(newAvailability);
+    }
+
+    function blockOn(availability, date, severity) {
+        const newAvailability = {...availability.getFullAvailability()};
+        newAvailability[date] = severity;
+        return pack(newAvailability);
+    }
+
+    function freeOn(availability, date) {
+        const newAvailability = {...availability.getFullAvailability()};
+        delete newAvailability[date];
+        return pack(newAvailability);
+    }
 
     return {
-        blockDate,
-        freeDate,
-        getBlockedDate
+        create,
+        blockOn,
+        freeOn
     }
-}
+})());
 
 function createPerson(name) {
-    const availability = createAvailability();
+    const availability = Availability.create();
 
     const id = crypto.randomUUID();
     const getId = () => id;
 
     return {
         name: () => name,
+        id: getId,
         ...availability,
-        id: getId
     };
 }
 
@@ -71,6 +86,13 @@ function createPeopleList(count) {
 
     const getList = () => peopleList;
 
+    const getAvailabilityOn = (date) => {
+        let highestAvailability = -1;
+        for (const person in peopleList) {
+
+        }
+    }
+
     return {
         getList
     }
@@ -88,6 +110,7 @@ function createCalendarInfo(month, year) {
 export {
     VIEW_DEFAULT,
     severities,
+    Availability,
     createPeopleList,
     createCalendarInfo
 }
