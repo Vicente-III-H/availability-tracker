@@ -150,7 +150,7 @@ const PeopleList = Object.freeze((() => {
 
             getHighestSeverityOn: (date) => {
                 let highestSeverity = -1;
-                for (const person in peopleListTemplate.peopleList) {
+                for (const person of peopleListTemplate.peopleList) {
                     const availability = person.getAvailabilityOn(date);
                     if (availability) {
                         highestSeverity = Severity.getIndexOf(availability) > highestSeverity ? Severity.getIndexOf(availability) : highestSeverity;
