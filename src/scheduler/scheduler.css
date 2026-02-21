@@ -21,6 +21,13 @@
     flex: 1;
 }
 
+/* FACE PANEL */
+.face-card {
+    
+}
+
+/* CALENDAR */
+
 #weekdays {
     display: flex;
 }

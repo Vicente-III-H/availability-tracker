@@ -10,7 +10,7 @@ function Day({ date, disabled = false }) {
     )
 }
 
-function Calendar({ People, CalendarInfo, viewAvailability }) {
+function Calendar({ People, CalendarInfo, view }) {
     const daysList = (() => {
         const firstDayOffset = (new Date(CalendarInfo.year(), CalendarInfo.month())).getDay();
         const totalDaysInMonth = (new Date(CalendarInfo.year(), CalendarInfo.month() + 1, 0)).getDate();

@@ -1,5 +1,7 @@
 import { monthNames } from "../global";
 
+const VIEW_DEFAULT = "All";
+
 /* From lowest severity to highest */
 const severities = [
     "Unsure",
@@ -37,28 +39,28 @@ function createAvailability() {
 function createPerson(name) {
     const availability = createAvailability();
 
-    const key = crypto.randomUUID();
-    const getKey = () => key;
+    const id = crypto.randomUUID();
+    const getId = () => id;
 
     return {
-        name,
+        name: () => name,
         ...availability,
-        getKey
+        id: getId
     };
 }
 
 function createPeopleList(count) {
-    const keyTracker = {};
+    const idTracker = {};
 
-    const peopleList = ((tracker) => {
+    const peopleList = ((idTracker) => {
         const list = [];
         for (let i = 0; i < count; i++) {
             const person = createPerson("Person " + (i + 1));
             list.push(person);
-            tracker[person.getKey()] = i;
+            idTracker[person.id()] = i;
         }
         return list;
-    })(keyTracker);
+    })(idTracker);
 
     const getList = () => peopleList;
 
@@ -77,6 +79,7 @@ function createCalendarInfo(month, year) {
 }
 
 export {
+    VIEW_DEFAULT,
     createPeopleList,
     createCalendarInfo
 }

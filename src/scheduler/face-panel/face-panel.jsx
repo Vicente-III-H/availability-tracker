@@ -1,15 +1,27 @@
-function FaceCard({ name }) {
+import { VIEW_DEFAULT } from "../scheduler-types";
+
+function FaceCard({ Person, view }) {
+    const toggleViewPerson = () => {
+        if (view.current === Person.id()) {
+            view.set(VIEW_DEFAULT);
+        } else {
+            view.set(Person.id());
+        }
+    }
+
     return (
-        <div>
-            {name}
+        <div className="face-card" onClick={toggleViewPerson}>
+            <div></div>
+            <div>{Person.name()}</div>
         </div>
     )
 }
 
-function FacePanel({ People }) {
+function FacePanel({ People, view }) {
     return (
         <div id="face-panel">
-            {People.getList().map((person) => <FaceCard name={person.name} key={person.getKey()} /> )}
+            {People.getList().map((Person) => <FaceCard Person={Person} view={view} key={Person.id()} /> )}
+            {view.current}
         </div>
     )
 }
