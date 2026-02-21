@@ -2,28 +2,28 @@ import ModesControl from "./modes-control";
 import { VIEW_DEFAULT } from "../scheduler-types";
 import './face-panel.css'
 
-function FaceCard({ Person, view }) {
+function FaceCard({ person, view }) {
     const toggleViewPerson = () => {
-        if (view.current === Person.id()) {
+        if (view.current === person.getId()) {
             view.set(VIEW_DEFAULT);
         } else {
-            view.set(Person.id());
+            view.set(person.getId());
         }
     }
 
     return (
         <div className="face-card" onClick={toggleViewPerson}>
             <div></div>
-            <div className="face-name">{Person.name()}</div>
+            <div className="face-name">{person.getName()}</div>
         </div>
     )
 }
 
-function FacePanel({ People, mode, view }) {
+function FacePanel({ people, mode, view }) {
     return (
         <div id="face-panel">
             <div id="face-cards">
-                {People.getList().map((Person) => <FaceCard Person={Person} view={view} key={Person.id()} /> )}
+                {people.list().map((person) => <FaceCard person={person} view={view} key={person.getId()} /> )}
             </div>
             <div>
                 <ModesControl mode={mode} view={view} />

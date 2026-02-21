@@ -2,19 +2,31 @@ import { monthNames } from "../global";
 
 const VIEW_DEFAULT = "All";
 
-function createSeverity(name, rgba) {
-    return {
-        name,
-        rgba
-    }
-}
+const Severity = (() => {
+    /* Lowest severity has lowest index in severityList */
+    const severityList = []
+    const severityTracker = {}
 
-/* From lowest severity to highest */
-const severities = [
-    createSeverity("Unsure", "rgba(246, 225, 42, 0.9)"),
-    createSeverity("Partially Busy", "rgba(226, 46, 46, 0.9)"),
-    createSeverity("Unavailable", "rgba(29, 29, 29, 0.9)")
-]
+    return {
+        add: (name, color) => {
+            const severity = {
+                name,
+                color,
+                id: crypto.randomUUID()
+            }
+
+            severityList.push(severity);
+            severityTracker[severity.name] = severityList.length - 1;
+        },
+
+        list: () => severityList,
+
+        getIndexOf: (severityName) => severityTracker[severityName]
+    }
+})();
+Severity.add("Unsure", "rgba(246, 225, 42, 0.9)");
+Severity.add("Partially Busy", "rgba(226, 46, 46, 0.9)");
+Severity.add("Unavailable", "rgba(29, 29, 29, 0.9)");
 
 function getMonthName(monthIndex) {
     return monthNames[monthIndex];
@@ -67,9 +79,9 @@ const Availability = Object.freeze((() => {
 const Person = Object.freeze((() => {
     function pack(personTemplate) {
         return {
-            name: () => personTemplate.name,
+            getName: () => personTemplate.name,
 
-            id: () => personTemplate.id,
+            getId: () => personTemplate.id,
 
             ...personTemplate.availability
         }
@@ -131,6 +143,55 @@ const Person = Object.freeze((() => {
     }
 })());
 
+const PeopleList = Object.freeze((() => {
+    function pack(peopleListTemplate) {
+        return {
+            list: () => peopleListTemplate.peopleList,
+
+            getHighestSeverityOn: (date) => {
+                let highestSeverity = -1;
+                for (const person in peopleListTemplate.peopleList) {
+                    const availability = person.getAvailabilityOn(date);
+                    if (availability) {
+                        highestSeverity = Severity.getIndexOf(availability) > highestSeverity ? Severity.getIndexOf(availability) : highestSeverity;
+                    }
+                }
+                return highestSeverity === -1 ? null : highestSeverity;
+            },
+
+            getPersonAvailabilityOn: (personId, date) => {
+                const personIndex = peopleListTemplate.idTracker[personId];
+                const person = peopleListTemplate.peopleList[personIndex];
+                return person.getAvailabilityOn(date);
+            }
+        }
+    }
+
+    function create(count) {
+        const idTracker = {};
+        const peopleList = ((idTracker) => {
+            const list = [];
+            for (let i = 0; i < count; i++) {
+                const person = Person.create("Person " + (i + 1));
+                list.push(person);
+                idTracker[person.getId()] = i;
+            }
+            return list;
+        })(idTracker);
+
+        const newPeopleListTemplate = {
+            peopleList,
+            idTracker
+        }
+
+        return pack(newPeopleListTemplate);
+    }
+
+    return {
+        create
+    }
+})());
+
 function createPeopleList(count) {
     const idTracker = {};
 
@@ -145,13 +206,6 @@ function createPeopleList(count) {
     })(idTracker);
 
     const getList = () => peopleList;
-
-    const getAvailabilityOn = (date) => {
-        let highestAvailability = -1;
-        for (const person in peopleList) {
-
-        }
-    }
 
     return {
         getList
@@ -169,7 +223,7 @@ function createCalendarInfo(month, year) {
 
 export {
     VIEW_DEFAULT,
-    severities,
-    createPeopleList,
+    Severity,
+    PeopleList,
     createCalendarInfo
 }

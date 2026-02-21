@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { severities } from "../scheduler-types";
+import { Severity } from "../scheduler-types";
 import { VIEW_DEFAULT } from "../scheduler-types";
 import './modes-control.css'
 
@@ -22,7 +22,7 @@ function Dropdown({ setMode }) {
         <div className="dropdown-menu">
             <DropdownOption name={"View"} setMode={setMode} />
             <DropdownDivider />
-            {severities.toReversed().map((severity) => <DropdownOption name={severity.name} setMode={setMode} key={severity.name}/>)}
+            {Severity.list().toReversed().map((severity) => <DropdownOption name={severity.name} setMode={setMode} key={severity.name}/>)}
             <DropdownDivider />
             <DropdownOption name={"Free"} setMode={setMode} />
         </div>
