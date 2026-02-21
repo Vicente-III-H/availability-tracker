@@ -44,14 +44,12 @@ function Calendar({ People, CalendarInfo, viewAvailability }) {
             <div>{CalendarInfo.monthName()}</div>
             <div id="weekdays">{weekdayAbbreviation.map((weekday) => { return <div key={weekday}>{weekday}</div> })}</div>
             <div id="days">
-                {
-                    daysList.map((dayObj) => {
-                        if (dayObj.day === "disabled") {
-                            return <Day disabled={true} key={dayObj.id}></Day>
-                        }
-                        return <Day date={dayObj.day} key={dayObj.id}></Day>
-                    })
-                }
+                {daysList.map((dayObj) => {
+                    if (dayObj.day === "disabled") {
+                        return <Day disabled={true} key={dayObj.id}></Day>
+                    }
+                    return <Day date={dayObj.day} key={dayObj.id}></Day>
+                })}
             </div>
         </div>
     )
