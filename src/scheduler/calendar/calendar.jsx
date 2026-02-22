@@ -35,40 +35,12 @@ function Calendar({ peopleList, calendarData, mode, view }) {
         }
     })());
 
-    const daysList = (() => {
-        const firstDayOffset = (new Date(calendarData.current.getYear(), calendarData.current.getMonthIndex())).getDay();
-        const totalDaysInMonth = (new Date(calendarData.current.getYear(), calendarData.current.getMonthIndex() + 1, 0)).getDate();
-
-        const numberOfFullWeeks = Math.floor((firstDayOffset + totalDaysInMonth) / 7);
-        const weekForRemainingDays = (firstDayOffset + totalDaysInMonth) % 7 > 0 ? 1 : 0;
-        const numberOfWeeks = numberOfFullWeeks + weekForRemainingDays;
-
-        const daysList = [];
-        for (let i = 0; i < numberOfWeeks * 7; i++) {
-            const dayObj = {
-                id: crypto.randomUUID()
-            }
-
-            if (i < firstDayOffset) {
-                dayObj.day = "disabled";
-            } else if (i < firstDayOffset + totalDaysInMonth) {
-                dayObj.day = (i - firstDayOffset + 1).toString();
-            } else {
-                dayObj.day = "disabled";
-            }
-
-            daysList.push(dayObj);
-        }
-
-        return daysList;
-    })();
-
     return (
         <div id="calendar">
             <div>{calendarData.current.getMonthName()}</div>
             <div id="weekdays">{weekdayAbbreviation.map((weekday) => { return <div key={weekday}>{weekday}</div> })}</div>
             <div id="days">
-                {daysList.map((dayObj) => {
+                {calendarData.current.getCalendarDaysList().map((dayObj) => {
                     if (dayObj.day === "disabled") {
                         return <Day disabled={true} key={dayObj.id}></Day>
                     } else if (view.current === VIEW_DEFAULT) {

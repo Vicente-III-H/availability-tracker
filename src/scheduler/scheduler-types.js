@@ -266,7 +266,35 @@ const CalendarData = Object.freeze((() => {
 
             getMonthName: () => monthNames[calendarDataTemplate.monthIndex],
 
-            getYear: () => calendarDataTemplate.year
+            getYear: () => calendarDataTemplate.year,
+
+            getCalendarDaysList: () => {
+                const firstDayOffset = (new Date(calendarDataTemplate.year, calendarDataTemplate.monthIndex)).getDay();
+                const totalDaysInMonth = (new Date(calendarDataTemplate.year, calendarDataTemplate.monthIndex + 1, 0)).getDate();
+
+                const numberOfFullWeeks = Math.floor((firstDayOffset + totalDaysInMonth) / 7);
+                const weekForRemainingDays = (firstDayOffset + totalDaysInMonth) % 7 > 0 ? 1 : 0;
+                const numberOfWeeks = numberOfFullWeeks + weekForRemainingDays;
+
+                const daysList = [];
+                for (let i = 0; i < numberOfWeeks * 7; i++) {
+                    const dayObj = {
+                        id: crypto.randomUUID()
+                    }
+
+                    if (i < firstDayOffset) {
+                        dayObj.day = "disabled";
+                    } else if (i < firstDayOffset + totalDaysInMonth) {
+                        dayObj.day = (i - firstDayOffset + 1).toString();
+                    } else {
+                        dayObj.day = "disabled";
+                    }
+
+                    daysList.push(dayObj);
+                }
+
+                return daysList;
+            }
         }
     }
 
