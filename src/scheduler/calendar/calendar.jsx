@@ -9,13 +9,13 @@ function Day({ date, severity, disabled = false }) {
         const severityStyling = {
             backgroundColor: Severity.getColorOf(severity)
         }
-        return <div className="day" style={severityStyling}></div>
+        return <div className="day" style={severityStyling}>{date}</div>
     } else {
         return <div className="day free">{date}</div>
     }
 }
 
-function Calendar({ people, CalendarInfo, view }) {
+function Calendar({ people, CalendarInfo, mode, view }) {
     const daysList = (() => {
         const firstDayOffset = (new Date(CalendarInfo.year(), CalendarInfo.month())).getDay();
         const totalDaysInMonth = (new Date(CalendarInfo.year(), CalendarInfo.month() + 1, 0)).getDate();
@@ -58,7 +58,7 @@ function Calendar({ people, CalendarInfo, view }) {
                         return (
                             <Day
                                 date={dayObj.day}
-                                severity={people.getHighestSeverityOn(dayObj.day)}
+                                severity={people.current.getHighestSeverityOn(dayObj.day)}
                                 key={dayObj.id}
                             />
                         )
@@ -66,7 +66,7 @@ function Calendar({ people, CalendarInfo, view }) {
                         return (
                             <Day
                                 date={dayObj.day}
-                                severity={people.getPersonAvailabilityOn(view.current, dayObj.day)}
+                                severity={people.current.getPersonAvailabilityOn(view.current, dayObj.day)}
                                 key={dayObj.id}
                             />
                         )

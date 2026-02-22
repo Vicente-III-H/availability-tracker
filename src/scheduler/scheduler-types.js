@@ -111,7 +111,7 @@ const Person = Object.freeze((() => {
 
         const newPersonTemplate = {
             name: newName,
-            id: person.id(),
+            id: person.getId(),
             availability: newAvailability
         };
 
@@ -122,8 +122,8 @@ const Person = Object.freeze((() => {
         const newAvailability = Availability.blockOn(person, date, severity);
 
         const newPersonTemplate = {
-            name: person.name(),
-            id: person.id(),
+            name: person.getName(),
+            id: person.getId(),
             availability: newAvailability
         };
 
@@ -134,8 +134,8 @@ const Person = Object.freeze((() => {
         const newAvailability = Availability.freeOn(person, date);
 
         const newPersonTemplate = {
-            name: person.name(),
-            id: person.id(),
+            name: person.getName(),
+            id: person.getId(),
             availability: newAvailability
         };
 
@@ -151,9 +151,27 @@ const Person = Object.freeze((() => {
 })());
 
 const PeopleList = Object.freeze((() => {
+    function createIdTracker(peopleList) {
+        const idTracker = {}
+        for (let i = 0; i < peopleList.length; i++) {
+            const person = peopleList[i];
+            idTracker[person.getId()] = i;
+        }
+        return idTracker;
+    }
+
     function pack(peopleListTemplate) {
         return {
             list: () => peopleListTemplate.peopleList,
+
+            getIndexOf: (personId) => {
+                return peopleListTemplate.idTracker[personId];
+            },
+
+            getPerson: (personId) => {
+                const personIndex = peopleListTemplate.idTracker[personId];
+                return peopleListTemplate.peopleList[personIndex];
+            },
 
             getHighestSeverityOn: (date) => {
                 let highestSeverity = -1;
@@ -175,27 +193,39 @@ const PeopleList = Object.freeze((() => {
     }
 
     function create(count) {
-        const idTracker = {};
-        const peopleList = ((idTracker) => {
+        const peopleList = (() => {
             const list = [];
             for (let i = 0; i < count; i++) {
-                const person = Person.create("Person " + (i + 1));
-                list.push(person);
-                idTracker[person.getId()] = i;
+                list.push(Person.create("Person " + (i + 1)));
             }
             return list;
-        })(idTracker);
+        })();
 
         const newPeopleListTemplate = {
             peopleList,
-            idTracker
+            idTracker: createIdTracker(peopleList)
+        }
+
+        return pack(newPeopleListTemplate);
+    }
+
+    function blockAvailabilityOf(peopleList, personId, date, severity) {
+        const newPerson = Person.blockOn(peopleList.getPerson(personId), date, severity);
+
+        const newPeopleList = [...peopleList.list()];
+        newPeopleList[peopleList.getIndexOf(personId)] = newPerson;
+
+        const newPeopleListTemplate = {
+            peopleList: newPeopleList,
+            idTracker: createIdTracker(newPeopleList)
         }
 
         return pack(newPeopleListTemplate);
     }
 
     return {
-        create
+        create,
+        blockAvailabilityOf
     }
 })());
 

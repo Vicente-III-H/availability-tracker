@@ -21,6 +21,7 @@ function Scheduler({ people, CalendarInfo }) {
             <Calendar
                 people={people}
                 CalendarInfo={CalendarInfo}
+                mode={modeStateObj}
                 view={viewStateObj}
             />
         </div>

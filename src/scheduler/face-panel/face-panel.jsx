@@ -23,7 +23,7 @@ function FacePanel({ people, mode, view }) {
     return (
         <div id="face-panel">
             <div id="face-cards">
-                {people.list().map((person) => <FaceCard person={person} view={view} key={person.getId()} /> )}
+                {people.current.list().map((person) => <FaceCard person={person} view={view} key={person.getId()} /> )}
             </div>
             <div>
                 <ModesControl mode={mode} view={view} />
