@@ -9,8 +9,13 @@
     --day-free: rgba(53, 156, 229, 0.9);
 }
 
+#calendar div {
+    font-weight: 700;
+}
+
 #weekdays {
     display: flex;
+    text-align: center;
 }
 
 #weekdays > div {
@@ -28,6 +33,7 @@
 
 .day {
     box-sizing: border-box;
+    text-align: right;
 }
 
 .day.disabled {
