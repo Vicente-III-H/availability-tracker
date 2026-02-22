@@ -223,9 +223,39 @@ const PeopleList = Object.freeze((() => {
         return pack(newPeopleListTemplate);
     }
 
+    function freeAvailabilityOf(peopleList, personId, date) {
+        const newPerson = Person.freeOn(peopleList.getPerson(personId), date);
+
+        const newPeopleList = [...peopleList.list()];
+        newPeopleList[peopleList.getIndexOf(personId)] = newPerson;
+
+        const newPeopleListTemplate = {
+            peopleList: newPeopleList,
+            idTracker: createIdTracker(newPeopleList)
+        }
+
+        return pack(newPeopleListTemplate);
+    }
+
+    function changeNameOf(newName) {
+        const newPerson = Person.changeName(peopleList.getPerson(personId), newName);
+
+        const newPeopleList = [...peopleList.list()];
+        newPeopleList[peopleList.getIndexOf(personId)] = newPerson;
+
+        const newPeopleListTemplate = {
+            peopleList: newPeopleList,
+            idTracker: createIdTracker(newPeopleList)
+        }
+
+        return pack(newPeopleListTemplate);
+    }
+
     return {
         create,
-        blockAvailabilityOf
+        blockAvailabilityOf,
+        freeAvailabilityOf,
+        changeNameOf
     }
 })());
 
