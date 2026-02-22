@@ -39,10 +39,6 @@ Severity.add("Unsure", "rgba(246, 225, 42, 0.9)");
 Severity.add("Partially Busy", "rgba(226, 46, 46, 0.9)");
 Severity.add("Unavailable", "rgba(29, 29, 29, 0.9)");
 
-function getMonthName(monthIndex) {
-    return monthNames[monthIndex];
-}
-
 const Availability = Object.freeze((() => {
     function pack(availabilityObj) {
         return {
@@ -263,18 +259,34 @@ const PeopleList = Object.freeze((() => {
     }
 })());
 
-function createCalendarInfo(month, year) {
-    const calendarInfo = {}
-    calendarInfo.month = () => month;
-    calendarInfo.monthName = () => getMonthName(month);
-    calendarInfo.year = () => year;
+const CalendarData = Object.freeze((() => {
+    function pack(calendarDataTemplate) {
+        return {
+            getMonthIndex: () => calendarDataTemplate.monthIndex,
 
-    return calendarInfo;
-}
+            getMonthName: () => monthNames[calendarDataTemplate.monthIndex],
+
+            getYear: () => calendarDataTemplate.year
+        }
+    }
+
+    function create(monthIndex, year) {
+        const newCalendarDataTemplate = {
+            monthIndex,
+            year
+        }
+
+        return pack(newCalendarDataTemplate);
+    }
+
+    return {
+        create
+    }
+})());
 
 export {
     VIEW_DEFAULT,
     Severity,
     PeopleList,
-    createCalendarInfo
+    CalendarData
 }

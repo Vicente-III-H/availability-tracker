@@ -16,7 +16,7 @@ function Day({ date, severity, clickDayFunction = null, disabled = false }) {
     return <div className="day" style={severityStyling} onClick={onClick}>{date}</div>
 }
 
-function Calendar({ peopleList, CalendarInfo, mode, view }) {
+function Calendar({ peopleList, calendarData, mode, view }) {
     const blockDay = (date) => {
         peopleList.set(PeopleList.blockAvailabilityOf(peopleList.current, view.current, date, mode.current));
     };
@@ -36,8 +36,8 @@ function Calendar({ peopleList, CalendarInfo, mode, view }) {
     })());
 
     const daysList = (() => {
-        const firstDayOffset = (new Date(CalendarInfo.year(), CalendarInfo.month())).getDay();
-        const totalDaysInMonth = (new Date(CalendarInfo.year(), CalendarInfo.month() + 1, 0)).getDate();
+        const firstDayOffset = (new Date(calendarData.current.getYear(), calendarData.current.getMonthIndex())).getDay();
+        const totalDaysInMonth = (new Date(calendarData.current.getYear(), calendarData.current.getMonthIndex() + 1, 0)).getDate();
 
         const numberOfFullWeeks = Math.floor((firstDayOffset + totalDaysInMonth) / 7);
         const weekForRemainingDays = (firstDayOffset + totalDaysInMonth) % 7 > 0 ? 1 : 0;
@@ -65,7 +65,7 @@ function Calendar({ peopleList, CalendarInfo, mode, view }) {
 
     return (
         <div id="calendar">
-            <div>{CalendarInfo.monthName()}</div>
+            <div>{calendarData.current.getMonthName()}</div>
             <div id="weekdays">{weekdayAbbreviation.map((weekday) => { return <div key={weekday}>{weekday}</div> })}</div>
             <div id="days">
                 {daysList.map((dayObj) => {

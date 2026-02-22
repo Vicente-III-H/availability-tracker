@@ -4,7 +4,7 @@ import { VIEW_DEFAULT } from './scheduler-types';
 import FacePanel from './face-panel/face-panel'
 import Calendar from './calendar/calendar';
 
-function Scheduler({ peopleList, CalendarInfo }) {
+function Scheduler({ peopleList, calendarData }) {
     const [view, setView] = useState(VIEW_DEFAULT);
     const viewStateObj = createStateObject(view, setView);
 
@@ -20,7 +20,7 @@ function Scheduler({ peopleList, CalendarInfo }) {
             />
             <Calendar
                 peopleList={peopleList}
-                CalendarInfo={CalendarInfo}
+                calendarData={calendarData}
                 mode={modeStateObj}
                 view={viewStateObj}
             />
