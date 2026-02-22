@@ -9,7 +9,7 @@ import './App.css'
 function App() {
     const [menu, setMenu] = useState(Menus.first());
 
-    const [peopleList, setPeopleList] = useState(PeopleList.create(5));
+    const [peopleList, setPeopleList] = useState(PeopleList.create(1));
     const peopleListStateObj = createStateObject(peopleList, setPeopleList);
 
     const [calendarData, setCalendarData] = useState(CalendarData.create(0, 2026));
@@ -18,7 +18,7 @@ function App() {
     if (menu === MenuNames.Scheduler) {
         return <Scheduler peopleList={peopleListStateObj} calendarData={calendarDataStateObj}/>
     } else {
-        return <MenuSelector menu={menu} setMenu={setMenu} />
+        return <MenuSelector menu={menu} setMenu={setMenu} setPeopleList={setPeopleList} />
     }
 }
 

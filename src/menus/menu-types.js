@@ -1,3 +1,8 @@
+const Limits = Object.freeze({
+    minPeople: 1,
+    maxPeople: 5,
+});
+
 const MenuNames = Object.freeze({
     Start: "Start",
     Count: "Count",
@@ -30,6 +35,7 @@ Menus.add(MenuNames.Date);
 Menus.add(MenuNames.Scheduler);
 
 export {
+    Limits,
     MenuNames,
     Menus
 }
