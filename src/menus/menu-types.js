@@ -1,6 +1,7 @@
 const Limits = Object.freeze({
     minPeople: 1,
     maxPeople: 5,
+    minYear: (new Date()).getFullYear() - 1
 });
 
 const MenuNames = Object.freeze({

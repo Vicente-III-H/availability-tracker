@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Limits, MenuNames, Menus } from "./menu-types"
-import { PeopleList } from "../scheduler/scheduler-types"
+import { CalendarData, PeopleList } from "../scheduler/scheduler-types"
 import './Menus.css'
 import { clampNumber } from "../global"
 
@@ -63,37 +63,75 @@ function CountMenu({ setMenu, setPeopleList }) {
     )
 }
 
-function DateMenu({ setMenu }) {
+function DateMenu({ setMenu, setCalendarData }) {
+    const [date, setDate] = useState((() => {
+        const currentDate = new Date();
+        return {
+            monthIndex: currentDate.getMonth(),
+            year: currentDate.getFullYear()
+        }
+    })());
+
+    const setYear = (newYear) => {
+        const newDate = {...date};
+        newDate.year = newYear;
+        setDate(newDate);
+    }
+
+    const setMonthIndex = (newMonthIndex) => {
+        const newDate = {...date};
+        newDate.monthIndex = newMonthIndex;
+        setDate(newDate);
+    }
+
+    const continueFunction = () => {
+        setCalendarData(CalendarData.create(clampNumber(date.monthIndex, 0, 11), Math.max(date.year, Limits.minYear)));
+        setMenu(Menus.next(MenuNames.Date));
+    }
+
     return (
         <div className="menu">
             <div>
                 <div>
                     <h1>When is when?</h1>
                 </div>
-                <div><button onClick={() => {setMenu(Menus.next(MenuNames.Date))}}>Continue</button></div>
+                <div><button onClick={continueFunction}>Continue</button></div>
             </div>
             <div>
                 <div>
                     <label htmlFor="month-input">Month</label>
-                    <input id="month-input" type="number" />
+                    <input
+                        id="month-input"
+                        type="number"
+                        min={1}
+                        max={12}
+                        value={date.monthIndex + 1}
+                        onChange={(event) => {setMonthIndex(Number(event.target.value) - 1)}}
+                    />
                 </div>
                 <div>
                     <label htmlFor="year-input">Year</label>
-                    <input id="year-input" type="number" />
+                    <input
+                        id="year-input"
+                        type="number"
+                        min={Limits.minYear}
+                        value={date.year}
+                        onChange={(event) => {setYear(event.target.value)}}
+                    />
                 </div>
             </div>
         </div>
     )
 }
 
-function MenuSelector({ menu, setMenu, setPeopleList }) {
+function MenuSelector({ menu, setMenu, setPeopleList, setCalendarData }) {
     switch (menu) {
         case MenuNames.Start:
             return <StartMenu setMenu={setMenu} />
         case MenuNames.Count:
             return <CountMenu setMenu={setMenu} setPeopleList={setPeopleList} />
         case MenuNames.Date:
-            return <DateMenu setMenu={setMenu} />
+            return <DateMenu setMenu={setMenu} setCalendarData={setCalendarData} />
         default:
             return <StartMenu setMenu={setMenu} />
     }

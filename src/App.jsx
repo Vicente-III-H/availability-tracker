@@ -18,7 +18,7 @@ function App() {
     if (menu === MenuNames.Scheduler) {
         return <Scheduler peopleList={peopleListStateObj} calendarData={calendarDataStateObj}/>
     } else {
-        return <MenuSelector menu={menu} setMenu={setMenu} setPeopleList={setPeopleList} />
+        return <MenuSelector menu={menu} setMenu={setMenu} setPeopleList={setPeopleList} setCalendarData={setCalendarData} />
     }
 }
 
