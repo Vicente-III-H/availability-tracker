@@ -6,10 +6,10 @@ import { clampNumber } from "../global"
 
 function StartMenu({ setMenu }) {
     return (
-        <div className="menu">
+        <div id="start-menu">
             <div>
-                <h1>availabilityTracker</h1>
-                <p>A scheduler for viewing your friends' busy busy lives</p>
+                <h1 className="title">miniSched</h1>
+                <p>A scheduler for keeping track of your friends' busy, busy lives</p>
             </div>
             <div>
                 <button onClick={() => {setMenu(Menus.next(MenuNames.Start))}}>Continue</button>

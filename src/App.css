@@ -7,7 +7,7 @@
     place-items: center;
 }
 
-.menu, #scheduler {
+.menu, #scheduler, #start-menu {
     height: 100vh;
     flex: 1;
     display: flex;
