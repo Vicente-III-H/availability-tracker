@@ -34,6 +34,13 @@ h1, p {
 
 button, input {
   appearance: none;
+  background-color: #dad9cd;
+  border: 0 solid transparent;
+  border-radius: 0.8rem;
+  color: inherit;
+  text-align: center;
+  font-weight: 700;
+  padding: 0.2rem 1rem;
 }
 
 h1 {

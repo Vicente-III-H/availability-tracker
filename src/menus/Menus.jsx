@@ -39,13 +39,12 @@ function CountMenu({ setMenu, setPeopleList }) {
     };
 
     return (
-        <div className="menu">
-            <div>
-                <div><h1>How many people?</h1></div>
+        <div id="count-menu" className="menu">
+            <div className="left">
+                <div><h1 className="title">How many people?</h1></div>
                 <div><button onClick={continueFunction}>Continue</button></div>
             </div>
-            <div>
-                <div>{":)"}</div>
+            <div className="right">
                 <div>
                     <button onClick={decreaseCount}>-</button>
                     <input

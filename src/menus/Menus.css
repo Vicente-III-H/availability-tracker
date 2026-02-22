@@ -17,10 +17,33 @@
     font-size: 1.4rem;
 }
 
-.menu > div {
+.menu .left,
+.menu .right {
     flex: 1;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.menu .left {
+    gap: 2rem;
+}
+
+.menu .title {
+    font-size: 4rem;
+}
+
+#count-menu .right > div {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+#count-menu .right > div > button {
+    aspect-ratio: 1;
+}
+
+#count-input {
+    font-size: 5rem;
 }
