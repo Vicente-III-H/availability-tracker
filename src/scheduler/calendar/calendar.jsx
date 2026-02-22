@@ -15,7 +15,7 @@ function Day({ date, severity, disabled = false }) {
     }
 }
 
-function Calendar({ people, CalendarInfo, mode, view }) {
+function Calendar({ peopleList, CalendarInfo, mode, view }) {
     const daysList = (() => {
         const firstDayOffset = (new Date(CalendarInfo.year(), CalendarInfo.month())).getDay();
         const totalDaysInMonth = (new Date(CalendarInfo.year(), CalendarInfo.month() + 1, 0)).getDate();
@@ -58,7 +58,7 @@ function Calendar({ people, CalendarInfo, mode, view }) {
                         return (
                             <Day
                                 date={dayObj.day}
-                                severity={people.current.getHighestSeverityOn(dayObj.day)}
+                                severity={peopleList.current.getHighestSeverityOn(dayObj.day)}
                                 key={dayObj.id}
                             />
                         )
@@ -66,7 +66,7 @@ function Calendar({ people, CalendarInfo, mode, view }) {
                         return (
                             <Day
                                 date={dayObj.day}
-                                severity={people.current.getPersonAvailabilityOn(view.current, dayObj.day)}
+                                severity={peopleList.current.getPersonAvailabilityOn(view.current, dayObj.day)}
                                 key={dayObj.id}
                             />
                         )
