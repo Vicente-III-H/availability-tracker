@@ -2,20 +2,38 @@ import { weekdayAbbreviation } from "../../global";
 import { VIEW_DEFAULT, Severity, PeopleList } from "../scheduler-types";
 import './calendar.css'
 
-function Day({ date, severity, clickFunction, disabled = false }) {
+function Day({ date, severity, clickDayFunction = null, disabled = false }) {
     if (disabled) {
         return <div className="day disabled"></div>
     }
 
     const severityStyling = severity ? { backgroundColor: Severity.getColorOf(severity) } : { backgroundColor: "var(--day-free)" }
 
-    return <div className="day" style={severityStyling} onClick={() => {clickFunction(date)}}>{date}</div>
+    const onClick = () => {
+        if (clickDayFunction) { clickDayFunction(date) }
+    }
+
+    return <div className="day" style={severityStyling} onClick={onClick}>{date}</div>
 }
 
 function Calendar({ peopleList, CalendarInfo, mode, view }) {
     const blockDay = (date) => {
         peopleList.set(PeopleList.blockAvailabilityOf(peopleList.current, view.current, date, mode.current));
     };
+
+    const freeDay = (date) => {
+        peopleList.set(PeopleList.freeAvailabilityOf(peopleList.current, view.current, date));
+    }
+
+    const clickDayFunction = ((() => {
+        if (mode.current === "Free") {
+            return freeDay;
+        } else if (Severity.isASeverity(mode.current)) {
+            return blockDay;
+        } else {
+            return null;
+        }
+    })());
 
     const daysList = (() => {
         const firstDayOffset = (new Date(CalendarInfo.year(), CalendarInfo.month())).getDay();
@@ -53,9 +71,7 @@ function Calendar({ peopleList, CalendarInfo, mode, view }) {
                 {daysList.map((dayObj) => {
                     if (dayObj.day === "disabled") {
                         return <Day disabled={true} key={dayObj.id}></Day>
-                    }
-                    
-                    if (view.current === VIEW_DEFAULT) {
+                    } else if (view.current === VIEW_DEFAULT) {
                         return (
                             <Day
                                 date={dayObj.day}
@@ -64,13 +80,11 @@ function Calendar({ peopleList, CalendarInfo, mode, view }) {
                             />
                         )
                     } else {
-                        const clickFunction = (mode.current !== "View" && mode.current !== "Free") ? blockDay : () => {};
-
                         return (
                             <Day
                                 date={dayObj.day}
                                 severity={peopleList.current.getPersonAvailabilityOn(view.current, dayObj.day)}
-                                clickFunction={clickFunction}
+                                clickDayFunction={clickDayFunction}
                                 key={dayObj.id}
                             />
                         )

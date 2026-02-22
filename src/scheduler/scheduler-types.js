@@ -28,6 +28,10 @@ const Severity = (() => {
         getColorOf: (severityName) => {
             const severityIndex = severityTracker[severityName];
             return severityList[severityIndex].color;
+        },
+
+        isASeverity: (string) => {
+            return Object.hasOwn(severityTracker, string);
         }
     }
 })();
