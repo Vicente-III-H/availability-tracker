@@ -1,21 +1,22 @@
 import { weekdayAbbreviation } from "../../global";
-import { VIEW_DEFAULT, Severity } from "../scheduler-types";
+import { VIEW_DEFAULT, Severity, PeopleList } from "../scheduler-types";
 import './calendar.css'
 
-function Day({ date, severity, disabled = false }) {
+function Day({ date, severity, clickFunction, disabled = false }) {
     if (disabled) {
         return <div className="day disabled"></div>
-    } else if (severity) {
-        const severityStyling = {
-            backgroundColor: Severity.getColorOf(severity)
-        }
-        return <div className="day" style={severityStyling}>{date}</div>
-    } else {
-        return <div className="day free">{date}</div>
     }
+
+    const severityStyling = severity ? { backgroundColor: Severity.getColorOf(severity) } : { backgroundColor: "var(--day-free)" }
+
+    return <div className="day" style={severityStyling} onClick={() => {clickFunction(date)}}>{date}</div>
 }
 
 function Calendar({ peopleList, CalendarInfo, mode, view }) {
+    const blockDay = (date) => {
+        peopleList.set(PeopleList.blockAvailabilityOf(peopleList.current, view.current, date, mode.current));
+    };
+
     const daysList = (() => {
         const firstDayOffset = (new Date(CalendarInfo.year(), CalendarInfo.month())).getDay();
         const totalDaysInMonth = (new Date(CalendarInfo.year(), CalendarInfo.month() + 1, 0)).getDate();
@@ -63,10 +64,13 @@ function Calendar({ peopleList, CalendarInfo, mode, view }) {
                             />
                         )
                     } else {
+                        const clickFunction = (mode.current !== "View" && mode.current !== "Free") ? blockDay : () => {};
+
                         return (
                             <Day
                                 date={dayObj.day}
                                 severity={peopleList.current.getPersonAvailabilityOn(view.current, dayObj.day)}
+                                clickFunction={clickFunction}
                                 key={dayObj.id}
                             />
                         )

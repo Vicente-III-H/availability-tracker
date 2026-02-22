@@ -23,7 +23,7 @@ const Severity = (() => {
 
         getIndexOf: (severityName) => severityTracker[severityName],
 
-        getNameOf: (severityIndex) => severityList[severityIndex],
+        getNameOf: (severityIndex) => severityList[severityIndex].name,
 
         getColorOf: (severityName) => {
             const severityIndex = severityTracker[severityName];

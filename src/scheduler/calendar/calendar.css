@@ -33,7 +33,3 @@
 .day.disabled {
     background-color: var(--day-disabled);
 }
-
-.day.free {
-    background-color: var(--day-free);
-}
