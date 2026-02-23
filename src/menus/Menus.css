@@ -62,6 +62,10 @@
     --count-button-font-size: 3rem;
 }
 
+#count-menu .right button.bottom:hover {
+  box-shadow: rgba(23, 15, 0, 0.5) 0 -3px 10px;
+}
+
 #count-display {
     font-weight: 700;
     font-size: 8rem;

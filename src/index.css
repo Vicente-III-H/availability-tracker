@@ -12,9 +12,11 @@
   -moz-osx-font-smoothing: grayscale;
 
   --main-color: rgba(23, 15, 0, 0.87);
+  --focus-main-color: rgba(54, 35, 0, 0.87);
   --secondary-color: #fbf9ea;
   --hover-secondary-color: #e8e6d5;
   --focus-secondary-color: #dad7cd;
+  --transition-time: 0.2s;
 }
 
 body {
@@ -43,6 +45,10 @@ button, input {
   font-weight: 700;
   border-radius: 0.4em;
   padding: 0;
+}
+
+input {
+  transition: background-color var(--transition-time);
 }
 
 input:hover {
@@ -78,12 +84,12 @@ button {
   color: var(--secondary-color);
   background-color: var(--main-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color var(--transition-time), box-shadow var(--transition-time);
 }
 button:hover {
-  
+  box-shadow: rgba(23, 15, 0, 0.5) 0 3px 10px;
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: var(--focus-main-color);
 }

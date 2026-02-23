@@ -48,7 +48,7 @@ function CountMenu({ setMenu, setPeopleList }) {
                 <div>
                     <button onClick={increaseCount}>+</button>
                     <div id="count-display">{count}</div>
-                    <button onClick={decreaseCount}>-</button>
+                    <button className="bottom" onClick={decreaseCount}>-</button>
                 </div>
             </div>
         </div>
