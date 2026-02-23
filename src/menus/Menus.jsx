@@ -46,16 +46,9 @@ function CountMenu({ setMenu, setPeopleList }) {
             </div>
             <div className="right">
                 <div>
-                    <button onClick={decreaseCount}>-</button>
-                    <input
-                        id="count-input"
-                        type="number"
-                        min={Limits.minPeople}
-                        max={Limits.maxPeople}
-                        value={count}
-                        onChange={(event) => {setCount(event.target.value)}}
-                    />
                     <button onClick={increaseCount}>+</button>
+                    <div id="count-display">{count}</div>
+                    <button onClick={decreaseCount}>-</button>
                 </div>
             </div>
         </div>
