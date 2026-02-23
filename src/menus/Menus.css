@@ -56,8 +56,8 @@
     border-radius: 40%;
     font-weight: 700;
     font-size: var(--count-button-font-size);
-    height: calc(var(--count-button-font-size) + 1.5rem);
-    width: calc(var(--count-button-font-size) + 1.5rem);
+    height: 1.5em;
+    width: 1.5em;
 
     --count-button-font-size: 3rem;
 }
@@ -68,11 +68,32 @@
     text-align: center;
 }
 
-#date-menu .right > div {
+#date-menu > .right > div {
+    gap: 16px;
     align-items: end;
 }
 
 .input-with-label {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.input-with-label label {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+#date-menu > .right input[type=number],
+#date-menu > .right .separator {
+    font-weight: 700;
+    font-size: 6rem;
+}
+
+#month-input {
+    width: 1.5em;
+}
+
+#year-input {
+    width: 3.3em;
 }

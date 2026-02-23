@@ -13,6 +13,8 @@
 
   --main-color: rgba(23, 15, 0, 0.87);
   --secondary-color: #fbf9ea;
+  --hover-secondary-color: #e8e6d5;
+  --focus-secondary-color: #dad7cd;
 }
 
 body {
@@ -34,11 +36,21 @@ h1, p {
 
 button, input {
   appearance: none;
-  background-color: #dad9cd;
+  background-color: var(--secondary-color);
   border: 0 solid transparent;
-  color: inherit;
+  color: var(--main-color);
   text-align: center;
   font-weight: 700;
+  border-radius: 0.4em;
+  padding: 0;
+}
+
+input:hover {
+  background-color: var(--hover-secondary-color);
+}
+
+input:focus {
+  background-color: var(--focus-secondary-color);
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -57,7 +69,7 @@ h1 {
 }
 
 button {
-  border-radius: 0.92rem;
+  border-radius: 0.92em;
   border: 1px solid transparent;
   padding: 0.6rem 1.2rem;
   font-size: 1.1rem;
