@@ -59,7 +59,7 @@ function DateMenu({ setMenu, setCalendarData }) {
     const [date, setDate] = useState((() => {
         const currentDate = new Date();
         return {
-            monthIndex: currentDate.getMonth(),
+            month: currentDate.getMonth() + 1,
             year: currentDate.getFullYear()
         }
     })());
@@ -70,14 +70,17 @@ function DateMenu({ setMenu, setCalendarData }) {
         setDate(newDate);
     }
 
-    const setMonthIndex = (newMonthIndex) => {
+    const setMonth = (newMonth) => {
         const newDate = {...date};
-        newDate.monthIndex = newMonthIndex;
+        newDate.month = newMonth;
         setDate(newDate);
     }
 
     const continueFunction = () => {
-        setCalendarData(CalendarData.create(clampNumber(date.monthIndex, 0, 11), Math.max(date.year, Limits.minYear)));
+        const currentDate = {...date};
+        if (currentDate.month === "") { currentDate.month = (new Date()).getMonth() + 1 }
+        if (currentDate.year === "") { currentDate.year = (new Date()).getFullYear() }
+        setCalendarData(CalendarData.create(clampNumber(currentDate.month - 1, 0, 11), Math.max(currentDate.year, Limits.minYear)));
         setMenu(Menus.next(MenuNames.Date));
     }
 
@@ -98,8 +101,8 @@ function DateMenu({ setMenu, setCalendarData }) {
                             type="number"
                             min={1}
                             max={12}
-                            value={date.monthIndex + 1}
-                            onChange={(event) => {setMonthIndex(Number(event.target.value) - 1)}}
+                            value={date.month}
+                            onChange={(event) => {setMonth(event.target.value)}}
                         />
                     </div>
                     <div className="separator">{"/"}</div>
