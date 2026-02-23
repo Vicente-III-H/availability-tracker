@@ -89,34 +89,37 @@ function DateMenu({ setMenu, setCalendarData }) {
     }
 
     return (
-        <div className="menu">
-            <div>
+        <div id="date-menu" className="menu">
+            <div className="left">
                 <div>
-                    <h1>When is when?</h1>
+                    <h1 className="title">When is when?</h1>
                 </div>
                 <div><button onClick={continueFunction}>Continue</button></div>
             </div>
-            <div>
+            <div className="right">
                 <div>
-                    <label htmlFor="month-input">Month</label>
-                    <input
-                        id="month-input"
-                        type="number"
-                        min={1}
-                        max={12}
-                        value={date.monthIndex + 1}
-                        onChange={(event) => {setMonthIndex(Number(event.target.value) - 1)}}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="year-input">Year</label>
-                    <input
-                        id="year-input"
-                        type="number"
-                        min={Limits.minYear}
-                        value={date.year}
-                        onChange={(event) => {setYear(event.target.value)}}
-                    />
+                    <div className="input-with-label">
+                        <label htmlFor="month-input">Month</label>
+                        <input
+                            id="month-input"
+                            type="number"
+                            min={1}
+                            max={12}
+                            value={date.monthIndex + 1}
+                            onChange={(event) => {setMonthIndex(Number(event.target.value) - 1)}}
+                        />
+                    </div>
+                    <div className="separator">{"/"}</div>
+                    <div className="input-with-label">
+                        <label htmlFor="year-input">Year</label>
+                        <input
+                            id="year-input"
+                            type="number"
+                            min={Limits.minYear}
+                            value={date.year}
+                            onChange={(event) => {setYear(event.target.value)}}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

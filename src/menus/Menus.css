@@ -34,7 +34,7 @@
     font-size: 4rem;
 }
 
-#count-menu .right > div {
+.menu .right > div {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -46,4 +46,13 @@
 
 #count-input {
     font-size: 5rem;
+}
+
+#date-menu .right > div {
+    align-items: end;
+}
+
+.input-with-label {
+    display: flex;
+    flex-direction: column;
 }
