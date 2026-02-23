@@ -13,6 +13,13 @@
     font-weight: 700;
 }
 
+#calendar .title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-left: 18px;
+    margin-bottom: 12px;
+}
+
 #weekdays {
     display: flex;
     text-align: center;

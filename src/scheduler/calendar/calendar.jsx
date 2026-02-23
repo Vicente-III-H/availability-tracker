@@ -37,7 +37,7 @@ function Calendar({ peopleList, calendarData, mode, view }) {
 
     return (
         <div id="calendar">
-            <div>{calendarData.current.getMonthName() + " " + calendarData.current.getYear()}</div>
+            <div className="title">{calendarData.current.getMonthName() + " " + calendarData.current.getYear()}</div>
             <div id="weekdays">{weekdayAbbreviation.map((weekday) => { return <div key={weekday}>{weekday}</div> })}</div>
             <div id="days">
                 {calendarData.current.getCalendarDaysList().map((dayObj) => {
