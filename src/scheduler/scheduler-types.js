@@ -237,7 +237,7 @@ const PeopleList = Object.freeze((() => {
         return pack(newPeopleListTemplate);
     }
 
-    function changeNameOf(newName) {
+    function changeNameOf(peopleList, personId, newName) {
         const newPerson = Person.changeName(peopleList.getPerson(personId), newName);
 
         const newPeopleList = [...peopleList.list()];

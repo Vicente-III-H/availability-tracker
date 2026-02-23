@@ -1,8 +1,11 @@
+import { useState } from "react";
 import ModesControl from "./modes-control";
-import { VIEW_DEFAULT } from "../scheduler-types";
+import { PeopleList, VIEW_DEFAULT } from "../scheduler-types";
 import './face-panel.css'
 
-function FaceCard({ person, view }) {
+function FaceCard({ person, changeName, view }) {
+    const [name, setName] = useState(person.getName());
+
     const toggleViewPerson = () => {
         if (view.current === person.getId()) {
             view.set(VIEW_DEFAULT);
@@ -12,18 +15,31 @@ function FaceCard({ person, view }) {
     }
 
     return (
-        <div className="face-card" onClick={toggleViewPerson}>
-            <div></div>
-            <div className="face-name">{person.getName()}</div>
+        <div className={"face-card"} onClick={toggleViewPerson}>
+            <form onSubmit={(event) => {
+                event.preventDefault();
+                changeName(person.getId(), name);
+            }}>
+                <input
+                    type="text"
+                    value={name}
+                    onChange={(event) => {setName(event.target.value)}}
+                />
+            </form>
         </div>
     )
 }
 
 function FacePanel({ peopleList, mode, view }) {
+    const changeName = (personId, newName) => {
+        console.log(newName);
+        peopleList.set(PeopleList.changeNameOf(peopleList.current, personId, newName));
+    }
+
     return (
         <div id="face-panel">
             <div id="face-cards">
-                {peopleList.current.list().map((person) => <FaceCard person={person} view={view} key={person.getId()} /> )}
+                {peopleList.current.list().map((person) => <FaceCard person={person} changeName={changeName} view={view} key={person.getId()} /> )}
             </div>
             <div>
                 <ModesControl mode={mode} view={view} />
