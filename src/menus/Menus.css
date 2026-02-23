@@ -63,7 +63,7 @@
 }
 
 #count-menu .right button.bottom:hover {
-  box-shadow: rgba(23, 15, 0, 0.5) 0 -3px 10px;
+  box-shadow: rgba(23, 15, 0, 0.45) 0 -2px 8px;
 }
 
 #count-display {

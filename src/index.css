@@ -87,9 +87,5 @@ button {
   transition: border-color var(--transition-time), box-shadow var(--transition-time);
 }
 button:hover {
-  box-shadow: rgba(23, 15, 0, 0.5) 0 3px 10px;
-}
-button:focus,
-button:focus-visible {
-  background-color: var(--focus-main-color);
+  box-shadow: rgba(23, 15, 0, 0.45) 0 2px 8px;
 }
