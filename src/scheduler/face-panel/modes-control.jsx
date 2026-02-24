@@ -29,7 +29,7 @@ function Dropdown({ setMode }) {
     )
 }
 
-function ModesControl({ mode, view }) {
+function ModesControl({ getPerson, mode, view }) {
     const [showDropdown, setShowDropdown] = useState(false);
 
     const toggleDropdown = () => {
@@ -42,9 +42,23 @@ function ModesControl({ mode, view }) {
         view.set(VIEW_DEFAULT);
     }
 
+    const displayHelpText = () => {
+        if (view.current === VIEW_DEFAULT) {
+            switch (mode.current) {
+                case "View":
+                    return "Click any person to view their availability"
+                case "Free":
+                    return "Click any person to free up their availability"
+                default:
+                    return `Click any person to mark their schedule as "${mode.current}"`
+            }
+        }
+        return `Viewing ${getPerson(view.current).getName()}'s availability`
+    }
+
     return (
         <div id="modes">
-            <div>{mode.current + " - " + view.current}</div>
+            <div>{displayHelpText()}</div>
             <div className="dropdown">
                 <button onClick={toggleDropdown}>{mode.current}</button>
                 {showDropdown ? <Dropdown setMode={setMode} /> : null}

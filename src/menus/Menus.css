@@ -63,7 +63,7 @@
 }
 
 #count-menu .right button.bottom:hover {
-  box-shadow: rgba(23, 15, 0, 0.45) 0 -2px 8px;
+  box-shadow: var(--shadow-upside-down);
 }
 
 #count-display {

@@ -6,8 +6,10 @@ import './face-panel.css'
 function FaceCard({ person, changeName, view }) {
     const [name, setName] = useState(person.getName());
 
+    const currentlySelected = view.current === person.getId();
+
     const toggleViewPerson = () => {
-        if (view.current === person.getId()) {
+        if (currentlySelected) {
             view.set(VIEW_DEFAULT);
         } else {
             view.set(person.getId());
@@ -15,10 +17,10 @@ function FaceCard({ person, changeName, view }) {
     }
 
     return (
-        <div className={"face-card"} onClick={toggleViewPerson}>
+        <div className={(currentlySelected ? "selected " : "") + "face-card"} onClick={toggleViewPerson}>
             <form onSubmit={(event) => {
                 event.preventDefault();
-                changeName(person.getId(), name);
+                changeName(person.getId(), name, setName);
             }}>
                 <input
                     type="text"
@@ -31,9 +33,10 @@ function FaceCard({ person, changeName, view }) {
 }
 
 function FacePanel({ peopleList, mode, view }) {
-    const changeName = (personId, newName) => {
-        console.log(newName);
+    const changeName = (personId, newName, callback) => {
+        if (newName.trim() === "") { newName = "Person" }
         peopleList.set(PeopleList.changeNameOf(peopleList.current, personId, newName));
+        callback(newName);
     }
 
     return (
@@ -42,7 +45,7 @@ function FacePanel({ peopleList, mode, view }) {
                 {peopleList.current.list().map((person) => <FaceCard person={person} changeName={changeName} view={view} key={person.getId()} /> )}
             </div>
             <div>
-                <ModesControl mode={mode} view={view} />
+                <ModesControl getPerson={peopleList.current.getPerson} mode={mode} view={view} />
             </div>
         </div>
     )

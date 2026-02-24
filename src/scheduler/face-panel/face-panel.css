@@ -5,18 +5,55 @@
     flex-direction: column;
     align-items: stretch;
 
+    padding: 14px 20px;
     min-width: 200px;
+    color: var(--main-color);
+    background-color: var(--secondary-color);
+    border-right: 2px solid var(--main-color);
 }
 
 #face-cards {
     flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .face-card {
-    display: flex;
-    align-items: stretch;
+    padding: 10px 10px;
+    border-radius: 1rem;
+    color: var(--secondary-color);
+    background-color: var(--main-color);
+    transition: box-shadow var(--transition-time);
 }
 
-.face-name {
-    flex: 1;
+.face-card:hover {
+    cursor: pointer;
+    box-shadow: var(--dark-shadow);
+}
+
+.face-card.selected {
+    box-shadow: var(--dark-shadow);
+}
+
+.face-card form {
+    width: 70%;
+}
+
+.face-card input {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 1.2rem;
+    text-align: start;
+    color: inherit;
+    background-color: inherit;
+}
+
+.face-card input:hover {
+    background-color: var(--hover-main-color);
+}
+
+.face-card input:focus {
+    background-color: var(--focus-main-color);
 }
