@@ -2,9 +2,9 @@ import { weekdayAbbreviation } from "../../global";
 import { VIEW_DEFAULT, Severity, PeopleList } from "../scheduler-types";
 import './calendar.css'
 
-function Day({ date, severity, clickDayFunction = null, disabled = false }) {
+function Day({ date, specificClass, severity, clickDayFunction = null, disabled = false }) {
     if (disabled) {
-        return <div className="day disabled"></div>
+        return <div className={"day disabled" + specificClass}></div>
     }
 
     const severityStyling = severity ? { backgroundColor: Severity.getColorOf(severity) } : { backgroundColor: "var(--day-free)" }
@@ -13,10 +13,12 @@ function Day({ date, severity, clickDayFunction = null, disabled = false }) {
         if (clickDayFunction) { clickDayFunction(date) }
     }
 
-    return <div className="day" style={severityStyling} onClick={onClick}>{date}</div>
+    return <div className={"day" + specificClass} style={severityStyling} onClick={onClick}>{date}</div>
 }
 
 function Calendar({ peopleList, calendarData, mode, view }) {
+    const totalNumberOfDays = calendarData.current.getNumberOfCalendarDays();
+
     const blockDay = (date) => {
         peopleList.set(PeopleList.blockAvailabilityOf(peopleList.current, view.current, date, mode.current));
     };
@@ -40,14 +42,19 @@ function Calendar({ peopleList, calendarData, mode, view }) {
             <div className="title">{calendarData.current.getMonthName() + " " + calendarData.current.getYear()}</div>
             <div id="weekdays">{weekdayAbbreviation.map((weekday) => { return <div key={weekday}>{weekday}</div> })}</div>
             <div id="days">
-                {calendarData.current.getCalendarDaysList().map((dayObj) => {
+                {calendarData.current.getCalendarDaysList().map((dayObj, index) => {
+                    let daySpecificClass = "";
+                    if (index % 7 === 6) { daySpecificClass += " last-day"}
+                    if (index >= totalNumberOfDays - 7) { daySpecificClass += " last-week"}
+
                     if (dayObj.day === "disabled") {
-                        return <Day disabled={true} key={dayObj.id}></Day>
+                        return <Day disabled={true} specificClass={daySpecificClass} key={dayObj.id}></Day>
                     } else if (view.current === VIEW_DEFAULT) {
                         return (
                             <Day
                                 date={dayObj.day}
                                 severity={peopleList.current.getHighestSeverityOn(dayObj.day)}
+                                specificClass={daySpecificClass}
                                 key={dayObj.id}
                             />
                         )
@@ -57,6 +64,7 @@ function Calendar({ peopleList, calendarData, mode, view }) {
                                 date={dayObj.day}
                                 severity={peopleList.current.getPersonAvailabilityOn(view.current, dayObj.day)}
                                 clickDayFunction={clickDayFunction}
+                                specificClass={daySpecificClass}
                                 key={dayObj.id}
                             />
                         )

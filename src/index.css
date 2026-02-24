@@ -21,6 +21,8 @@
   --shadow: rgba(23, 15, 0, 0.45) 0 2px 8px;
   --shadow-upside-down: rgba(23, 15, 0, 0.45) 0 -2px 8px;
   --dark-shadow: rgba(23, 15, 0, 0.65) 0 2px 8px;
+  --border-line: 2px solid var(--main-color);
+  --border-line-lighter: 2px solid rgba(23, 15, 0, 0.125);
 }
 
 body {
@@ -30,6 +32,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-size: 16px;
+  overflow: hidden;
 }
 
 div {

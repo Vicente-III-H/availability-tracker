@@ -17,12 +17,14 @@
     font-size: 3rem;
     font-weight: 800;
     margin-left: 24px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 #weekdays {
     display: flex;
     text-align: center;
+    padding-bottom: 4px;
+    border-bottom: var(--border-line);
 }
 
 #weekdays > div {
@@ -41,6 +43,16 @@
 .day {
     box-sizing: border-box;
     text-align: right;
+    border-right: var(--border-line-lighter);
+    border-bottom: var(--border-line-lighter);
+}
+
+.day.last-day {
+    border-right: 0 solid transparent;
+}
+
+.day.last-week {
+    border-bottom: 0 solid transparent;
 }
 
 .day.disabled {

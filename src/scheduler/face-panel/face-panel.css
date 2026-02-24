@@ -9,7 +9,7 @@
     min-width: 200px;
     color: var(--main-color);
     background-color: var(--secondary-color);
-    border-right: 2px solid var(--main-color);
+    border-right: var(--border-line);
 }
 
 #face-cards {
@@ -18,6 +18,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    overflow-y: auto;
 }
 
 .face-card {
