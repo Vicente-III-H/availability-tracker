@@ -7,8 +7,9 @@
 
     overflow: auto;
 
-    --day-disabled: rgba(53, 53, 53, 0.3);
-    --day-free: rgba(53, 156, 229, 0.9);
+    /* rgba(0, 0, 0, 0.1) */
+    --day-disabled: rgba(0, 0, 0, 0.1);
+    --day-free: rgba(85, 172, 233, 0.7);
 }
 
 #calendar div {
