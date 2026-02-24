@@ -5,6 +5,8 @@
     flex-direction: column;
     align-items: stretch;
 
+    overflow: auto;
+
     --day-disabled: rgba(53, 53, 53, 0.3);
     --day-free: rgba(53, 156, 229, 0.9);
 }

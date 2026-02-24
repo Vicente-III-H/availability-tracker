@@ -44,7 +44,7 @@ function FacePanel({ peopleList, mode, view }) {
             <div id="face-cards">
                 {peopleList.current.list().map((person) => <FaceCard person={person} changeName={changeName} view={view} key={person.getId()} /> )}
             </div>
-            <div>
+            <div id="modes-control-container">
                 <ModesControl getPerson={peopleList.current.getPerson} mode={mode} view={view} />
             </div>
         </div>

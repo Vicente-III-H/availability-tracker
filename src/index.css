@@ -11,7 +11,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --main-color: rgba(23, 15, 0, 0.87);
+  --main-color: rgb(51, 45, 32);
   --hover-main-color: rgb(69, 63, 42);
   --focus-main-color: rgb(86, 80, 60);
   --secondary-color: #fbf9ea;
@@ -93,7 +93,7 @@ button {
   color: var(--secondary-color);
   background-color: var(--main-color);
   cursor: pointer;
-  transition: border-color var(--transition-time), box-shadow var(--transition-time);
+  transition: box-shadow var(--transition-time);
 }
 button:hover {
   box-shadow: var(--shadow);

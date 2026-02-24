@@ -58,9 +58,9 @@ function ModesControl({ getPerson, mode, view }) {
 
     return (
         <div id="modes">
-            <div>{displayHelpText()}</div>
+            <div id="modes-text">{displayHelpText()}</div>
             <div className="dropdown">
-                <button onClick={toggleDropdown}>{mode.current}</button>
+                <button onClick={toggleDropdown}>{"Mode: " + mode.current}</button>
                 {showDropdown ? <Dropdown setMode={setMode} /> : null}
             </div>
         </div>

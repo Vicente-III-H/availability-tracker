@@ -59,3 +59,7 @@
 .face-card input:focus {
     background-color: var(--focus-main-color);
 }
+
+#modes-control-container {
+    border-top: var(--border-line);
+}
