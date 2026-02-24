@@ -12,3 +12,14 @@
     flex: 1;
     display: flex;
 }
+
+button,
+.title,
+#count-display,
+.separator,
+#calendar div,
+#modes-text {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
