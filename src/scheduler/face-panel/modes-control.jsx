@@ -46,7 +46,7 @@ function ModesControl({ getPerson, mode, view }) {
         if (view.current === VIEW_DEFAULT) {
             switch (mode.current) {
                 case "View":
-                    return "Click any person to view their availability"
+                    return "Click any person to view their availability or change Modes with drop-down below"
                 case "Free":
                     return "Click any person to free up their availability"
                 default:
