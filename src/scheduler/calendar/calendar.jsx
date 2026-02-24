@@ -46,6 +46,7 @@ function Calendar({ peopleList, calendarData, mode, view }) {
                     let daySpecificClass = "";
                     if (index % 7 === 6) { daySpecificClass += " last-day"}
                     if (index >= totalNumberOfDays - 7) { daySpecificClass += " last-week"}
+                    if (mode.current !== "View" && view.current !== VIEW_DEFAULT) { daySpecificClass += " pointer" }
 
                     if (dayObj.day === "disabled") {
                         return <Day disabled={true} specificClass={daySpecificClass} key={dayObj.id}></Day>

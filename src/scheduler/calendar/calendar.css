@@ -58,3 +58,7 @@
 .day.disabled {
     background-color: var(--day-disabled);
 }
+
+.day.pointer:not(.disabled):hover {
+    cursor: pointer;
+}
