@@ -24,7 +24,7 @@
   --dark-shadow-upside-down: rgba(23, 15, 0, 0.45) 0 -2px 8px;
   --shadow: rgba(156, 156, 156, 0.4) 0 2px 8px;
   --border-line: 2px solid var(--main-color);
-  --border-line-lighter: 2px solid var(--tertiary-color);
+  --border-line-lighter: 2px solid rgba(23, 23, 23, 0.125);
 
   /* OLD COLOURS
   --main-color: rgb(51, 45, 32);
