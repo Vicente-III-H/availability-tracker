@@ -43,17 +43,18 @@
 .menu .right > div {
     display: flex;
     justify-content: center;
-    gap: 8px;
 }
 
-#count-menu .right > div {
+.counter {
+    flex: 1;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 32px;
 }
 
-#count-menu .right button {
+.counter button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,42 +69,26 @@
     --count-button-font-size: 3rem;
 }
 
-#count-menu .right button.bottom:hover {
-  box-shadow: var(--dark-shadow-upside-down);
+.counter button.bottom:hover {
+    box-shadow: var(--dark-shadow-upside-down);
 }
 
-#count-display {
+.number-display {
     font-weight: 700;
-    font-size: 8rem;
+    font-size: 6rem;
     text-align: center;
 }
 
-#date-menu > .right > div {
-    gap: 16px;
-    align-items: end;
-}
-
-.input-with-label {
+.counter-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.input-with-label label {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
+.counter-label {
+    font-size: 2rem;
 }
 
-#date-menu > .right input[type=number],
-#date-menu > .right .separator {
-    font-weight: 700;
-    font-size: 6rem;
-}
-
-#month-input {
-    width: 1.5em;
-}
-
-#year-input {
-    width: 3.3em;
+#date-menu > .right > div {
+    align-items: center;
 }

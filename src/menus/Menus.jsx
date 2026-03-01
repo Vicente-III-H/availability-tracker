@@ -40,11 +40,7 @@ function StartMenu({ setMenu }) {
 }
 
 function CountMenu({ setMenu, setPeopleList }) {
-    const [count, setCount] = useState(1);
-
-    const limitPeople = (number) => {
-        return clampNumber(number, Limits.minPeople, Limits.maxPeople);
-    }
+    const [count, setCount] = useState(Limits.minPeople);
 
     const decreaseCount = () => {
         setCount(Math.max(count - 1, Limits.minPeople));
@@ -55,7 +51,7 @@ function CountMenu({ setMenu, setPeopleList }) {
     }
 
     const continueFunction = () => {
-        setPeopleList(PeopleList.create(limitPeople(count)));
+        setPeopleList(PeopleList.create(count));
         setMenu(Menus.next(MenuNames.Count));
     };
 
@@ -66,9 +62,9 @@ function CountMenu({ setMenu, setPeopleList }) {
                 <div><button onClick={continueFunction}>Continue</button></div>
             </div>
             <div className="right">
-                <div>
+                <div className="counter">
                     <button onClick={increaseCount}>+</button>
-                    <div id="count-display">{count}</div>
+                    <div className="number-display">{count}</div>
                     <button className="bottom" onClick={decreaseCount}>-</button>
                 </div>
             </div>
@@ -77,31 +73,27 @@ function CountMenu({ setMenu, setPeopleList }) {
 }
 
 function DateMenu({ setMenu, setCalendarData }) {
-    const [date, setDate] = useState((() => {
-        const currentDate = new Date();
-        return {
-            month: currentDate.getMonth() + 1,
-            year: currentDate.getFullYear()
-        }
-    })());
+    const [month, setMonth] = useState((new Date()).getMonth() + 1);
+    const [year, setYear] = useState((new Date()).getFullYear());
 
-    const setYear = (newYear) => {
-        const newDate = {...date};
-        newDate.year = newYear;
-        setDate(newDate);
+    const increaseMonth = () => {
+        setMonth(month === 12 ? 1 : month + 1);
     }
 
-    const setMonth = (newMonth) => {
-        const newDate = {...date};
-        newDate.month = newMonth;
-        setDate(newDate);
+    const decreaseMonth = () => {
+        setMonth(month === 1 ? 12 : month - 1);
+    }
+
+    const increaseYear = () => {
+        setYear(year + 1);
+    }
+
+    const decreaseYear = () => {
+        setYear(Math.max(Limits.minYear, year - 1));
     }
 
     const continueFunction = () => {
-        const currentDate = {...date};
-        if (currentDate.month === "") { currentDate.month = (new Date()).getMonth() + 1 }
-        if (currentDate.year === "") { currentDate.year = (new Date()).getFullYear() }
-        setCalendarData(CalendarData.create(clampNumber(currentDate.month - 1, 0, 11), Math.max(currentDate.year, Limits.minYear)));
+        setCalendarData(CalendarData.create(month - 1, year));
         setMenu(Menus.next(MenuNames.Date));
     }
 
@@ -115,27 +107,21 @@ function DateMenu({ setMenu, setCalendarData }) {
             </div>
             <div className="right">
                 <div>
-                    <div className="input-with-label">
-                        <label htmlFor="month-input">Month</label>
-                        <input
-                            id="month-input"
-                            type="number"
-                            min={1}
-                            max={12}
-                            value={date.month}
-                            onChange={(event) => {setMonth(event.target.value)}}
-                        />
+                    <div className="counter">
+                        <button onClick={increaseMonth}>+</button>
+                        <div className="counter-container">
+                            <div className="counter-label">MM</div>
+                            <div className="number-display">{month}</div>
+                        </div>
+                        <button className="bottom" onClick={decreaseMonth}>-</button>
                     </div>
-                    <div className="separator">{"/"}</div>
-                    <div className="input-with-label">
-                        <label htmlFor="year-input">Year</label>
-                        <input
-                            id="year-input"
-                            type="number"
-                            min={Limits.minYear}
-                            value={date.year}
-                            onChange={(event) => {setYear(event.target.value)}}
-                        />
+                    <div className="counter">
+                        <button onClick={increaseYear}>+</button>
+                        <div className="counter-container">
+                            <div className="counter-label">YYYY</div>
+                            <div className="number-display">{year}</div>
+                        </div>
+                        <button className="bottom" onClick={decreaseYear}>-</button>
                     </div>
                 </div>
             </div>
