@@ -24,7 +24,7 @@ function StartMenu({ setMenu }) {
                 <p>A scheduler for keeping track of your friends' busy, busy lives</p>
             </div>
             <div>
-                <button onClick={() => {setMenu(Menus.next(MenuNames.Start))}}>Continue</button>
+                <button onClick={() => {setMenu(Menus.next(MenuNames.Start))}}>Start Scheduling</button>
             </div>
         </div>
     )
