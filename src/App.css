@@ -23,3 +23,7 @@ button,
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+#scheduler {
+    background-color: var(--tertiary-color);
+}

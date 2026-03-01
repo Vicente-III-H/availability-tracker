@@ -63,7 +63,7 @@
 }
 
 #count-menu .right button.bottom:hover {
-  box-shadow: var(--shadow-upside-down);
+  box-shadow: var(--dark-shadow-upside-down);
 }
 
 #count-display {

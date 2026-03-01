@@ -11,6 +11,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --main-color: rgb(0, 0, 0);
+  --secondary-color: rgb(255, 255, 255);
+  --tertiary-color: rgb(230, 230, 230);
+
+  --hover-main-color: rgb(235, 235, 235);
+  --focus-main-color: rgb(220, 220, 220);
+  --hover-secondary-color: var(--hover-main-color);
+  --focus-secondary-color: var(--focus-main-color);
+  --transition-time: 0.2s;
+  --dark-shadow: rgba(23, 15, 0, 0.45) 0 2px 8px;
+  --dark-shadow-upside-down: rgba(23, 15, 0, 0.45) 0 -2px 8px;
+  --shadow: rgba(156, 156, 156, 0.4) 0 2px 8px;
+  --border-line: 2px solid var(--main-color);
+  --border-line-lighter: 2px solid var(--tertiary-color);
+
+  /* OLD COLOURS
   --main-color: rgb(51, 45, 32);
   --hover-main-color: rgb(69, 63, 42);
   --focus-main-color: rgb(86, 80, 60);
@@ -23,6 +39,10 @@
   --dark-shadow: rgba(23, 15, 0, 0.65) 0 2px 8px;
   --border-line: 2px solid var(--main-color);
   --border-line-lighter: 2px solid rgba(23, 15, 0, 0.125);
+  "Unsure", "rgba(235, 221, 95, 0.7)"
+  "Partially Busy", "rgba(224, 150, 71, 0.7)"
+  "Unavailable", "rgba(224, 71, 71, 0.7)"
+  */
 }
 
 body {
@@ -104,5 +124,5 @@ button {
   transition: box-shadow var(--transition-time);
 }
 button:hover {
-  box-shadow: var(--shadow);
+  box-shadow: var(--dark-shadow);
 }

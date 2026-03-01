@@ -34,6 +34,10 @@
     border-radius: 1rem;
 }
 
+.dropdown > button:hover {
+    box-shadow: var(--shadow);
+}
+
 .dropdown {
     position: relative;
 }
@@ -45,9 +49,9 @@
 
     background-color: var(--secondary-color);
     border-radius: 1rem;
-    border: 1px solid transparent;
+    border: 0px solid transparent;
     padding: 10px 0;
-    box-shadow: var(--dark-shadow);
+    box-shadow: var(--shadow);
 }
 
 .dropdown-menu button {

@@ -35,9 +35,9 @@ const Severity = (() => {
         }
     }
 })();
-Severity.add("Unsure", "rgba(235, 221, 95, 0.7)");
-Severity.add("Partially Busy", "rgba(224, 150, 71, 0.7)");
-Severity.add("Unavailable", "rgba(224, 71, 71, 0.7)");
+Severity.add("Unsure", "rgb(255, 242, 123)");
+Severity.add("Partially Busy", "rgb(255, 192, 124)");
+Severity.add("Unavailable", "rgb(255, 129, 129)");
 
 const Availability = Object.freeze((() => {
     function pack(availabilityObj) {

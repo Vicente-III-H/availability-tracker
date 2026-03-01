@@ -30,11 +30,11 @@
 
 .face-card:hover {
     cursor: pointer;
-    box-shadow: var(--dark-shadow);
+    box-shadow: var(--shadow);
 }
 
 .face-card.selected {
-    box-shadow: var(--dark-shadow);
+    box-shadow: var(--shadow);
 }
 
 .face-card form {
