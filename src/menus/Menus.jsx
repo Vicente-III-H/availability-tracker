@@ -2,20 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { Limits, MenuNames, Menus } from "./menu-types"
 import { CalendarData, PeopleList } from "../scheduler/scheduler-types"
 import './Menus.css'
-import { FaceIcon, FaceEnum } from "../global.jsx"
-
-function FaceButton({ size }) {
-    const [currentFace, setCurrentFace] = useState(FaceEnum.Default);
-    const changeIcon = () => {
-        setCurrentFace(FaceEnum.next(currentFace));
-    };
-
-    return (
-        <div className="face-button" onClick={changeIcon}>
-            <FaceIcon faceEnum={currentFace} size={size} />
-        </div>
-    )
-}
 
 function StartMenu({ setMenu }) {
     const [titleHeight, setTitleHeight] = useState(0);

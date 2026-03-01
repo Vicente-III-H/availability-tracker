@@ -1,4 +1,4 @@
-import { weekdayAbbreviation } from "../../global.jsx";
+import { weekdayAbbreviation } from "../../global";
 import { VIEW_DEFAULT, Severity, PeopleList } from "../scheduler-types";
 import './calendar.css'
 

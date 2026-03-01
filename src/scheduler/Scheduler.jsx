@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createStateObject } from '../global.jsx';
+import { createStateObject } from '../global';
 import { VIEW_DEFAULT } from './scheduler-types';
 import FacePanel from './face-panel/face-panel'
 import Calendar from './calendar/calendar';

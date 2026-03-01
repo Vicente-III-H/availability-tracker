@@ -1,49 +1,3 @@
-export const clampNumber = (number, min, max) => {
-    if (number < min) { number = min }
-    if (number > max) { number = max }
-    return number;
-};
-
-export const weekdayAbbreviation = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat"
-];
-
-export const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-];
-
-export function createStateObject(state, setState) {
-    return {
-        current: state,
-        set: setState
-    }
-};
-
-export const faceNames = [
-    "default",
-    "surprised",
-    "relaxed",
-    "confident",
-    "happy"
-];
-
 export const FaceEnum = Object.freeze((() => {
     const names = [
         "Default",
@@ -147,4 +101,17 @@ export function FaceIcon({ faceEnum, size }) {
         default:
             return <></>
     }
+}
+
+export function FaceButton({ size }) {
+    const [currentFace, setCurrentFace] = useState(FaceEnum.Default);
+    const changeIcon = () => {
+        setCurrentFace(FaceEnum.next(currentFace));
+    };
+
+    return (
+        <div className="face-button" onClick={changeIcon}>
+            <FaceIcon faceEnum={currentFace} size={size} />
+        </div>
+    )
 }
