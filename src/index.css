@@ -39,6 +39,14 @@ div {
   box-sizing: border-box;
 }
 
+svg * {
+  stroke: var(--main-color);
+}
+
+svg circle {
+  fill: var(--main-color);
+}
+
 h1, p {
   margin: 0;
 }
