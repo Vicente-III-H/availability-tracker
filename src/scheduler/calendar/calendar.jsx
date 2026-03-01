@@ -44,6 +44,7 @@ function Calendar({ peopleList, calendarData, mode, view }) {
             <div id="days">
                 {calendarData.current.getCalendarDaysList().map((dayObj, index) => {
                     let daySpecificClass = "";
+                    if (index % 7 === 0) { daySpecificClass += " first-day" }
                     if (index % 7 === 6) { daySpecificClass += " last-day"}
                     if (index >= totalNumberOfDays - 7) { daySpecificClass += " last-week"}
                     if (mode.current !== "View" && view.current !== VIEW_DEFAULT) { daySpecificClass += " pointer" }

@@ -54,17 +54,20 @@
     padding: 8px;
     box-sizing: border-box;
     text-align: right;
-    border-right: var(--border-line-lighter);
-    border-bottom: var(--border-line-lighter);
+    border: var(--border-line-lighter);
     font-size: 1.1rem;
 }
 
+.day.first-day {
+    border-left: var(--no-border);
+}
+
 .day.last-day {
-    border-right: 0 solid transparent;
+    border-right: var(--no-border);
 }
 
 .day.last-week {
-    border-bottom: 0 solid transparent;
+    border-bottom: var(--no-border);
 }
 
 .day.disabled {
