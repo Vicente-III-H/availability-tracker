@@ -5,12 +5,18 @@
 #start-menu {
     flex-direction: column;
     justify-content: center;
-    gap: 4rem;
+    gap: 4.5rem;
+}
+
+#start-menu .title-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 0.8rem;
 }
 
 #start-menu .title {
     font-size: 5rem;
-    margin-bottom: 1rem;
 }
 
 #start-menu p {
