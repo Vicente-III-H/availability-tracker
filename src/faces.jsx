@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const FaceEnum = Object.freeze((() => {
     const names = [
         "Default",
@@ -105,6 +107,7 @@ export function FaceIcon({ faceEnum, size }) {
 
 export function FaceButton({ size }) {
     const [currentFace, setCurrentFace] = useState(FaceEnum.Default);
+    
     const changeIcon = () => {
         setCurrentFace(FaceEnum.next(currentFace));
     };

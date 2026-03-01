@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Limits, MenuNames, Menus } from "./menu-types"
 import { CalendarData, PeopleList } from "../scheduler/scheduler-types"
 import './Menus.css'
+import { FaceButton } from "../faces";
 
 function StartMenu({ setMenu }) {
     const [titleHeight, setTitleHeight] = useState(0);
