@@ -2,16 +2,18 @@ import { useEffect, useRef, useState } from "react"
 import { Limits, MenuNames, Menus } from "./menu-types"
 import { CalendarData, PeopleList } from "../scheduler/scheduler-types"
 import './Menus.css'
-import { clampNumber } from "../global"
+import { FaceIcon, FaceEnum } from "../global.jsx"
 
-function FaceLogo({ size }) {
+function FaceButton({ size }) {
+    const [currentFace, setCurrentFace] = useState(FaceEnum.Default);
+    const changeIcon = () => {
+        setCurrentFace(FaceEnum.next(currentFace));
+    };
+
     return (
-        <svg width={size} height={size} viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M179.489 88.4255C76.4498 86.7958 -1.9973 193.895 42.7541 279.57C87.5054 365.246 188.674 377.002 270.5 350.5C345.546 326.194 407.112 226.404 355.736 135.986C281.06 4.55912 134.154 56.9102 134.154 56.9102" stroke="black" strokeWidth="32" strokeLinecap="round"/>
-            <ellipse cx="151.376" cy="196.961" rx="20.5" ry="20" transform="rotate(-9 151.376 196.961)" fill="black"/>
-            <circle cx="251.882" cy="185.882" r="20" transform="rotate(-9 251.882 185.882)" fill="black"/>
-            <path d="M150.493 265.95C150.493 265.95 176.161 276.95 204.993 274.95C232.595 273.035 251.994 256.45 251.994 256.45" stroke="black" strokeWidth="32" strokeLinecap="round"/>
-        </svg>
+        <div className="face-button" onClick={changeIcon}>
+            <FaceIcon faceEnum={currentFace} size={size} />
+        </div>
     )
 }
 
@@ -27,7 +29,7 @@ function StartMenu({ setMenu }) {
         <div id="start-menu">
             <div>
                 <div className="title-container">
-                    <FaceLogo size={titleHeight} />
+                    <FaceButton size={titleHeight} />
                     <h1 className="title" ref={title}>miniSched</h1>
                 </div>
                 <p>A scheduler for keeping track of your friends' busy, busy lives</p>

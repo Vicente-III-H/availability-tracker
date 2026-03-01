@@ -23,6 +23,10 @@
     font-size: 1.4rem;
 }
 
+.face-button {
+    cursor: pointer;
+}
+
 .menu .left,
 .menu .right {
     flex: 1;

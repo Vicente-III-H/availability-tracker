@@ -1,4 +1,4 @@
-import { monthNames } from "../global";
+import { monthNames } from "../global.jsx";
 
 const VIEW_DEFAULT = "All";
 

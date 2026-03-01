@@ -3,7 +3,7 @@ import MenuSelector from './menus/Menus'
 import Scheduler from './scheduler/Scheduler'
 import { MenuNames, Menus } from './menus/menu-types';
 import { CalendarData, PeopleList } from "./scheduler/scheduler-types";
-import { createStateObject } from './global';
+import { createStateObject } from './global.jsx';
 import './App.css'
 
 function App() {
