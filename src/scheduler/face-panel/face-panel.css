@@ -7,8 +7,6 @@
 
     min-width: 200px;
     color: var(--main-color);
-    background-color: var(--secondary-color);
-    border-right: var(--border-line);
 }
 
 #face-cards {
@@ -25,8 +23,8 @@
 .face-card {
     padding: 10px 10px;
     border-radius: 1rem;
-    color: var(--secondary-color);
-    background-color: var(--main-color);
+    color: var(--main-color);
+    background-color: var(--secondary-color);
     transition: box-shadow var(--transition-time);
 }
 

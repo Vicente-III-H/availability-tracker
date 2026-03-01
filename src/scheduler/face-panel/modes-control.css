@@ -19,8 +19,8 @@
 
     text-align: left;
 
-    color: var(--secondary-color);
-    background-color: var(--main-color);
+    color: var(--main-color);
+    background-color: var(--secondary-color);
 }
 
 .dropdown > button, .dropdown-menu {
@@ -43,7 +43,7 @@
     left: 0;
     bottom: calc(100% + 10px);
 
-    background-color: var(--main-color);
+    background-color: var(--secondary-color);
     border-radius: 1rem;
     border: 1px solid transparent;
     padding: 10px 0;
